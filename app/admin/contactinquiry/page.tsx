@@ -90,8 +90,8 @@ export default function ContactInquiryPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-black dark:to-slate-900 py-20">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-black dark:to-slate-900 py-32">
+            <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ export default function ContactInquiryPage() {
                     className="mb-8"
                 >
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-4">
+                        <div className="flex flex-col items-start space-x-4 space-y-3">
                             <Button asChild variant="outline" size="sm">
                                 <Link href="/admin" className="flex items-center gap-2">
                                     <ArrowLeft className="h-4 w-4" />
