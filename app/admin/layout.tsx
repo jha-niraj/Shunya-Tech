@@ -22,9 +22,7 @@ export default function AdminLayout({
             disableTransitionOnChange
         >
             <div className="min-h-screen bg-background">
-                <Navbar />
                 <main>{children}</main>
-                <Footer />
                 <Toaster />
             </div>
         </ThemeProvider>
