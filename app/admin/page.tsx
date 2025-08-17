@@ -6,15 +6,9 @@ import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { 
-    MessageSquare, 
-    TrendingUp, 
-    Users, 
-    Clock, 
-    Eye,
-    ArrowRight,
-    Calendar,
-    Mail
+import {
+    MessageSquare, TrendingUp, Users, Clock,
+    Eye, ArrowRight, Calendar, Mail
 } from "lucide-react"
 import { getContactStats } from "@/actions/admin.action"
 
@@ -96,17 +90,17 @@ export default function AdminDashboard() {
                         </div>
                         <Badge className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white border-0">
                             <Calendar className="w-4 h-4 mr-2" />
-                            {new Date().toLocaleDateString('en-US', { 
-                                weekday: 'long', 
-                                year: 'numeric', 
-                                month: 'long', 
-                                day: 'numeric' 
-                            })}
+                            {
+                                new Date().toLocaleDateString('en-US', {
+                                    weekday: 'long',
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                })
+                            }
                         </Badge>
                     </div>
                 </motion.div>
-
-                {/* Stats Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
@@ -130,7 +124,6 @@ export default function AdminDashboard() {
                             </CardContent>
                         </Card>
                     </motion.div>
-
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -153,7 +146,6 @@ export default function AdminDashboard() {
                             </CardContent>
                         </Card>
                     </motion.div>
-
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -176,7 +168,6 @@ export default function AdminDashboard() {
                             </CardContent>
                         </Card>
                     </motion.div>
-
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -200,8 +191,6 @@ export default function AdminDashboard() {
                         </Card>
                     </motion.div>
                 </div>
-
-                {/* Recent Inquiries */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -223,65 +212,69 @@ export default function AdminDashboard() {
                             </div>
                         </CardHeader>
                         <CardContent>
-                            {loading ? (
-                                <div className="space-y-4">
-                                    {[...Array(3)].map((_, i) => (
-                                        <div key={i} className="flex items-center space-x-4 p-4 rounded-lg bg-gray-100 dark:bg-gray-800 animate-pulse">
-                                            <div className="h-10 w-10 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
-                                            <div className="flex-1 space-y-2">
-                                                <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/4"></div>
-                                                <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-3/4"></div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : stats.recent.length > 0 ? (
-                                <div className="space-y-4">
-                                    {stats.recent.map((inquiry, index) => (
-                                        <motion.div
-                                            key={inquiry.id}
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ duration: 0.3, delay: index * 0.1 }}
-                                            className="flex items-start space-x-4 p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                                        >
-                                            <div className="flex-shrink-0">
-                                                <div className="h-10 w-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                                                    <Mail className="h-5 w-5 text-white" />
-                                                </div>
-                                            </div>
-                                            <div className="flex-1 min-w-0">
-                                                <div className="flex items-center justify-between">
-                                                    <div>
-                                                        <p className="text-sm font-medium text-gray-900 dark:text-white">
-                                                            {inquiry.name}
-                                                        </p>
-                                                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                                                            {inquiry.email}
-                                                        </p>
-                                                    </div>
-                                                    <div className="text-xs text-gray-400 dark:text-gray-500">
-                                                        {formatDate(inquiry.createdAt)}
+                            {
+                                loading ? (
+                                    <div className="space-y-4">
+                                        {
+                                            [...Array(3)].map((_, i) => (
+                                                <div key={i} className="flex items-center space-x-4 p-4 rounded-lg bg-gray-100 dark:bg-gray-800 animate-pulse">
+                                                    <div className="h-10 w-10 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
+                                                    <div className="flex-1 space-y-2">
+                                                        <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/4"></div>
+                                                        <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-3/4"></div>
                                                     </div>
                                                 </div>
-                                                <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
-                                                    {truncateMessage(inquiry.message)}
-                                                </p>
-                                            </div>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className="text-center py-8">
-                                    <MessageSquare className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                                    <p className="text-gray-500 dark:text-gray-400">No inquiries yet</p>
-                                </div>
-                            )}
+                                            ))
+                                        }
+                                    </div>
+                                ) : stats.recent.length > 0 ? (
+                                    <div className="space-y-4">
+                                        {
+                                            stats.recent.map((inquiry, index) => (
+                                                <motion.div
+                                                    key={inquiry.id}
+                                                    initial={{ opacity: 0, x: -20 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                                                    className="flex items-start space-x-4 p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                                                >
+                                                    <div className="flex-shrink-0">
+                                                        <div className="h-10 w-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                                                            <Mail className="h-5 w-5 text-white" />
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="flex items-center justify-between">
+                                                            <div>
+                                                                <p className="text-sm font-medium text-gray-900 dark:text-white">
+                                                                    {inquiry.name}
+                                                                </p>
+                                                                <p className="text-sm text-gray-500 dark:text-gray-400">
+                                                                    {inquiry.email}
+                                                                </p>
+                                                            </div>
+                                                            <div className="text-xs text-gray-400 dark:text-gray-500">
+                                                                {formatDate(inquiry.createdAt)}
+                                                            </div>
+                                                        </div>
+                                                        <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
+                                                            {truncateMessage(inquiry.message)}
+                                                        </p>
+                                                    </div>
+                                                </motion.div>
+                                            ))
+                                        }
+                                    </div>
+                                ) : (
+                                    <div className="text-center py-8">
+                                        <MessageSquare className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                                        <p className="text-gray-500 dark:text-gray-400">No inquiries yet</p>
+                                    </div>
+                                )
+                            }
                         </CardContent>
                     </Card>
                 </motion.div>
-
-                {/* Quick Actions */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
