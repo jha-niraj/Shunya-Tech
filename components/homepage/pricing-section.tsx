@@ -186,35 +186,35 @@ export default function PricingPage() {
                             </Label>
                         </div>
                     </div>
-                    <Tabs defaultValue="mvp" className="w-full">
-                        <TabsList className="grid grid-cols-2 md:grid-cols-5 mb-8 bg-zinc-900/50 backdrop-blur-sm border border-white/10 p-1 rounded-xl">
+                    <Tabs defaultValue="mvp" className="w-full mx-auto">
+                        <TabsList className="grid grid-cols-2 md:grid-cols-5 w-full mx-auto mb-8 bg-zinc-900/50 backdrop-blur-sm border border-white/10 p-1 rounded-xl">
                             <TabsTrigger
                                 value="mvp"
-                                className="data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-all"
+                                className="text-white cursor-pointer data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-all"
                             >
                                 MVP MIRACLE
                             </TabsTrigger>
                             <TabsTrigger
                                 value="tier1"
-                                className="data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-all"
+                                className="text-white cursor-pointer data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-all"
                             >
                                 BASIC BYTE
                             </TabsTrigger>
                             <TabsTrigger
                                 value="tier2"
-                                className="data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-all"
+                                className="text-white cursor-pointer data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-all"
                             >
                                 PRO PIXEL
                             </TabsTrigger>
                             <TabsTrigger
                                 value="tier3"
-                                className="data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-all"
+                                className="text-white cursor-pointer data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-all"
                             >
                                 BUSINESS BIT
                             </TabsTrigger>
                             <TabsTrigger
                                 value="tier4"
-                                className="data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-all"
+                                className="text-white cursor-pointer data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-[0_0_10px_rgba(255,255,255,0.3)] transition-all"
                             >
                                 ENTERPRISE ERROR
                             </TabsTrigger>

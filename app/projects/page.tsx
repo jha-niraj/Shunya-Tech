@@ -93,7 +93,7 @@ export default function ProjectsPage() {
     return (
         <SmoothScroll>
             <div className="min-h-screen">
-                <section className="relative py-40 bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-black dark:to-slate-900 overflow-hidden">
+                <section className="relative py-32 bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-black dark:to-slate-900 overflow-hidden">
                     <div className="absolute inset-0 pointer-events-none">
                         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[600px] h-[600px] bg-teal-400/10 rounded-full blur-3xl"></div>
                     </div>
@@ -108,7 +108,7 @@ export default function ProjectsPage() {
                                 <Code2 className="w-4 h-4 text-teal-500 mr-2" />
                                 <span className="text-teal-700 dark:text-teal-300">Our Projects</span>
                             </Badge>
-                            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl leading-tight">
+                            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl leading-tight">
                                 Transforming Ideas into <span className="text-teal-500">Digital Realities</span>
                             </h1>
                             <p className="mt-6 text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">

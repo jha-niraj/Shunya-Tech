@@ -30,6 +30,13 @@ const projectData = [
     },
     {
         id: 2,
+        title: "Event Eye",
+        description: "One stop platform for all the event management realted needs for both the organizers and users.",
+        image: "/eventeye.png",
+        link: "https://eventeye.in/"
+    },
+    {
+        id: 2,
         title: "Logistics Center",
         description: "An innovative startup to simplify the global logistics and freight management needs.",
         image: "/logistics.png",
@@ -102,7 +109,7 @@ export default function ProjectsSection() {
                                             <p className="mt-2 text-gray-600 dark:text-gray-300">
                                                 {project.description}
                                             </p>
-                                            <div className="mt-6 flex items-center gap-4">
+                                            <div className="mt-6 flex items-center justify-center gap-4">
                                                 <Link href={project.link} target="_blank" rel="noopener noreferrer">
                                                     <Button
                                                         variant="outline"

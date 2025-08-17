@@ -67,13 +67,13 @@ export default function ContactPage() {
 
     return (
         <SmoothScroll>
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-black dark:to-slate-900 py-24">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-black dark:to-slate-900 py-32">
                 <div className="max-w-7xl mx-auto px-6 lg:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="text-center mb-16"
+                        className="text-center mb-8"
                     >
                         <Badge variant="outline" className="px-4 py-2 border-teal-200/30 dark:border-teal-800/30 bg-white/50 dark:bg-black/50 backdrop-blur-xl">
                             <MessageSquare className="w-4 h-4 text-teal-500 mr-2" />
@@ -155,7 +155,7 @@ export default function ContactPage() {
                                 </div>
                                 <Button
                                     type="submit"
-                                    className="w-full bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
+                                    className="w-full cursor-pointer bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl"
                                     disabled={isSubmitting}
                                 >
                                     {

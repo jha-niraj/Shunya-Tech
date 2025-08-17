@@ -244,14 +244,14 @@ export default function HeroSection() {
 									<Rocket className="w-4 h-4 mr-2" />
 									Featured Product
 								</Badge>
-								<h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+								<h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
 									Revolutionary{" "}
 									<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
 										Project Management
 									</span>{" "}
 									Platform
 								</h2>
-								<p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+								<p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
 									Experience the future of client collaboration with our cutting-edge project management platform.{" "}
 									<span className="text-emerald-700 dark:text-emerald-400 font-medium">
 										Login, track, collaborate, and watch your projects come to life in real-time.
@@ -279,10 +279,10 @@ export default function HeroSection() {
 							</div>
 							<div className="text-center">
 								<div className="flex flex-col sm:flex-row gap-4 justify-center">
-									<Link href="/signin">
+									<Link href="https://projectcentral.nirajjha.xyz" target="_blank">
 										<Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
 											<Monitor className="mr-2 h-5 w-5" />
-											Get Started
+										Get Started
 										</Button>
 									</Link>
 								</div>

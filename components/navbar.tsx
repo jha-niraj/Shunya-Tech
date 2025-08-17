@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
-import { Equal, Moon, Sun, LogOut } from 'lucide-react'
+import { Equal, Moon, Sun, LogOut, Mail, FolderOpen } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/liquidbutton'
@@ -34,13 +34,13 @@ export const Navbar = () => {
     const handleLinkClick = (href: string, e?: React.MouseEvent) => {
         if (href.startsWith('#')) {
             e?.preventDefault();
-            
+
             // If we're not on the homepage, navigate to homepage first
             if (pathname !== '/') {
                 router.push(`/${href}`);
                 return;
             }
-            
+
             // If we're on homepage, scroll to the section
             const element = document.querySelector(href);
             if (element) {
@@ -56,25 +56,33 @@ export const Navbar = () => {
                     asChild
                     variant="outline"
                     size="sm"
-                    className={cn(isScrolled && 'lg:hidden', 'rounded-xl border-2 hover:scale-105 transition-all duration-300')}>  
+                    className={cn(
+                        'rounded-xl border-2 hover:scale-105 transition-all duration-300',
+                        isScrolled ? 'w-10 h-10 p-0' : ''
+                    )}
+                >
                     <Link href="/contact">
-                        <span>Contact</span>
+                        {isScrolled ? (
+                            <Mail className="h-4 w-4" />
+                        ) : (
+                            <span>Contact</span>
+                        )}
                     </Link>
                 </Button>
                 <Button
                     asChild
                     size="sm"
-                    className={cn(isScrolled && 'lg:hidden', 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300')}>
+                    className={cn(
+                        'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300',
+                        isScrolled ? 'w-10 h-10 p-0' : ''
+                    )}
+                >
                     <Link href="/projects">
-                        <span>Projects</span>
-                    </Link>
-                </Button>
-                <Button
-                    asChild
-                    size="sm"
-                    className={cn(isScrolled ? 'lg:inline-flex' : 'hidden', 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300')}>
-                    <Link href="/contact">
-                        <span>Get Started</span>
+                        {isScrolled ? (
+                            <FolderOpen className="h-4 w-4" />
+                        ) : (
+                            <span>Projects</span>
+                        )}
                     </Link>
                 </Button>
             </div>
@@ -99,7 +107,7 @@ export const Navbar = () => {
                                     height={32}
                                     className='w-10 h-10 rounded-full scale-110 bg-black'
                                 />
-                                <p className='font-semibold text-xl tracking-tighter text-black dark:text-white'>ProjectCentral</p>
+                                <p className='font-semibold text-xl tracking-tighter text-black dark:text-white'>Shunya Tech</p>
                             </Link>
                             <Sheet>
                                 <SheetTrigger asChild>
@@ -116,7 +124,7 @@ export const Navbar = () => {
                                     <SheetHeader>
                                         <SheetTitle className="text-left">Menu</SheetTitle>
                                     </SheetHeader>
-                                    <div className="flex flex-col space-y-6 mt-8">
+                                    <div className="flex flex-col space-y-6 pl-8">
                                         {
                                             menuItems.map((item, index) => (
                                                 <SheetClose asChild key={index}>
@@ -150,6 +158,31 @@ export const Navbar = () => {
                                                 </Button>
                                             </div>
                                         </div>
+                                        <div className="w-full flex items-center gap-2 pt-4 border-t">
+                                            <SheetClose>
+                                                <Button
+                                                    asChild
+                                                    variant="outline"
+                                                    size="sm"
+                                                    className="rounded-xl border-2 hover:scale-105 transition-all duration-300 flex items-center gap-2">
+                                                    <Link href="/contact">
+                                                        <Mail className="h-4 w-4" />
+                                                        <span>Contact</span>
+                                                    </Link>
+                                                </Button>
+                                            </SheetClose>
+                                            <SheetClose>
+                                                <Button
+                                                    asChild
+                                                    size="sm"
+                                                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center gap-2">
+                                                    <Link href="/projects">
+                                                        <FolderOpen className="h-4 w-4" />
+                                                        <span>Projects</span>
+                                                    </Link>
+                                                </Button>
+                                            </SheetClose>
+                                        </div>
                                     </div>
                                 </SheetContent>
                             </Sheet>
@@ -161,7 +194,7 @@ export const Navbar = () => {
                                         <li key={index}>
                                             <button
                                                 onClick={(e) => handleLinkClick(item.href, e)}
-                                                className="text-muted-foreground hover:text-accent-foreground block duration-150">
+                                                className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer transition-colors">
                                                 <span>{item.name}</span>
                                             </button>
                                         </li>
