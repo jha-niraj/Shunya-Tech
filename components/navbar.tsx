@@ -1,28 +1,27 @@
 'use client'
 
 import Link from 'next/link'
+import { useRouter, usePathname } from 'next/navigation'
 import { Equal, Moon, Sun, LogOut } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/liquid-glass-button'
+import { Button } from '@/components/liquidbutton'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from '@/components/ui/sheet'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
-import { useSession, signOut } from 'next-auth/react'
 
 const menuItems = [
-    { name: 'Features', href: '#features' },
-    { name: 'How it Works', href: '#how-it-works' },
+    { name: 'Services', href: '#services' },
+    { name: 'How it Works', href: '#approach' },
     { name: 'Pricing', href: '#pricing' },
     { name: 'About', href: '#about' },
 ]
 
-export const Header = () => {
+export const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const { theme, setTheme } = useTheme();
-    const { data: session, status } = useSession();
+    const router = useRouter();
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -32,12 +31,17 @@ export const Header = () => {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    const handleSignOut = () => {
-        signOut({ callbackUrl: '/' });
-    };
-
-    const handleLinkClick = (href: string) => {
+    const handleLinkClick = (href: string, e?: React.MouseEvent) => {
         if (href.startsWith('#')) {
+            e?.preventDefault();
+            
+            // If we're not on the homepage, navigate to homepage first
+            if (pathname !== '/') {
+                router.push(`/${href}`);
+                return;
+            }
+            
+            // If we're on homepage, scroll to the section
             const element = document.querySelector(href);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth' });
@@ -46,61 +50,6 @@ export const Header = () => {
     };
 
     const renderAuthButtons = () => {
-        if (status === 'loading') {
-            return (
-                <div className="hidden lg:flex items-center gap-4">
-                    <div className="h-8 w-16 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-                    <div className="h-8 w-20 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
-                </div>
-            );
-        }
-
-        if (session?.user) {
-            return (
-                <div className="hidden lg:flex items-center gap-4">
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" className="relative h-8 w-8 rounded-full p-0">
-                                <Avatar className="h-8 w-8">
-                                    <AvatarImage src={session.user.image || undefined} alt={session.user.name || "User"} />
-                                    <AvatarFallback className="bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm">
-                                        {session.user.name?.split(" ").map((n: string) => n[0]).join("") || session.user.email?.[0].toUpperCase() || "U"}
-                                    </AvatarFallback>
-                                </Avatar>
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent className="w-56" align="end" forceMount>
-                            <div className="flex items-center justify-start gap-2 p-2">
-                                <div className="flex flex-col space-y-1 leading-none">
-                                    {session.user.name && <p className="font-medium">{session.user.name}</p>}
-                                    {session.user.email && (
-                                        <p className="w-[200px] truncate text-sm text-muted-foreground">
-                                            {session.user.email}
-                                        </p>
-                                    )}
-                                </div>
-                            </div>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem asChild>
-                                <Link href="/dashboard">Dashboard</Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                                <Link href="/profile">Profile</Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuItem asChild>
-                                <Link href="/projects">Projects</Link>
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem onClick={handleSignOut} className="cursor-pointer">
-                                <LogOut className="mr-2 h-4 w-4" />
-                                Sign out
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </div>
-            );
-        }
-
         return (
             <div className="hidden lg:flex items-center gap-4">
                 <Button
@@ -108,101 +57,26 @@ export const Header = () => {
                     variant="outline"
                     size="sm"
                     className={cn(isScrolled && 'lg:hidden', 'rounded-xl border-2 hover:scale-105 transition-all duration-300')}>  
-                    <Link href="/signin">
-                        <span>Login</span>
+                    <Link href="/contact">
+                        <span>Contact</span>
                     </Link>
                 </Button>
                 <Button
                     asChild
                     size="sm"
                     className={cn(isScrolled && 'lg:hidden', 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300')}>
-                    <Link href="/signup">
-                        <span>Sign Up</span>
+                    <Link href="/projects">
+                        <span>Projects</span>
                     </Link>
                 </Button>
                 <Button
                     asChild
                     size="sm"
                     className={cn(isScrolled ? 'lg:inline-flex' : 'hidden', 'bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300')}>
-                    <Link href="/signup">
+                    <Link href="/contact">
                         <span>Get Started</span>
                     </Link>
                 </Button>
-            </div>
-        );
-    };
-
-    const renderMobileAuthButtons = () => {
-        if (session?.user) {
-            return (
-                <div className="flex flex-col gap-4 pt-4 border-t">
-                    <div className="flex items-center gap-3">
-                        <Avatar className="h-10 w-10">
-                            <AvatarImage src={session.user.image || undefined} alt={session.user.name || "User"} />
-                            <AvatarFallback className="bg-gradient-to-r from-blue-500 to-purple-600 text-white">
-                                {session.user.name?.split(" ").map((n: string) => n[0]).join("") || session.user.email?.[0].toUpperCase() || "U"}
-                            </AvatarFallback>
-                        </Avatar>
-                        <div className="flex flex-col">
-                            <p className="font-medium text-sm">{session.user.name}</p>
-                            <p className="text-xs text-muted-foreground">{session.user.email}</p>
-                        </div>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <SheetClose asChild>
-                            <Button asChild variant="outline" size="sm" className="w-full justify-start rounded-xl hover:scale-105 transition-all duration-300">
-                                <Link href="/dashboard">Dashboard</Link>
-                            </Button>
-                        </SheetClose>
-                        <SheetClose asChild>
-                            <Button asChild variant="outline" size="sm" className="w-full justify-start rounded-xl hover:scale-105 transition-all duration-300">
-                                <Link href="/profile">Profile</Link>
-                            </Button>
-                        </SheetClose>
-                        <SheetClose asChild>
-                            <Button asChild variant="outline" size="sm" className="w-full justify-start rounded-xl hover:scale-105 transition-all duration-300">
-                                <Link href="/projects">Projects</Link>
-                            </Button>
-                        </SheetClose>
-                        <Button 
-                            onClick={handleSignOut} 
-                            variant="outline" 
-                            size="sm" 
-                            className="w-full justify-start text-red-600 hover:text-red-700 rounded-xl hover:scale-105 transition-all duration-300"
-                        >
-                            <LogOut className="mr-2 h-4 w-4" />
-                            Sign out
-                        </Button>
-                    </div>
-                </div>
-            );
-        }
-
-        return (
-            <div className="flex gap-4 pt-4 border-t">
-                <SheetClose asChild>
-                    <Button
-                        asChild
-                        variant="outline"
-                        size="sm"
-                        className="w-full rounded-xl border-2 hover:scale-105 transition-all duration-300"
-                    >
-                        <Link href="/signin">
-                            Login
-                        </Link>
-                    </Button>
-                </SheetClose>
-                <SheetClose asChild>
-                    <Button
-                        asChild
-                        size="sm"
-                        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-                    >
-                        <Link href="/signup">
-                            Get Started
-                        </Link>
-                    </Button>
-                </SheetClose>
             </div>
         );
     };
@@ -246,13 +120,12 @@ export const Header = () => {
                                         {
                                             menuItems.map((item, index) => (
                                                 <SheetClose asChild key={index}>
-                                                    <Link
-                                                        href={item.href}
-                                                        onClick={() => handleLinkClick(item.href)}
-                                                        className="text-lg font-medium text-muted-foreground hover:text-accent-foreground transition-colors"
+                                                    <button
+                                                        onClick={(e) => handleLinkClick(item.href, e)}
+                                                        className="text-lg font-medium text-muted-foreground hover:text-accent-foreground transition-colors text-left"
                                                     >
                                                         {item.name}
-                                                    </Link>
+                                                    </button>
                                                 </SheetClose>
                                             ))
                                         }
@@ -277,7 +150,6 @@ export const Header = () => {
                                                 </Button>
                                             </div>
                                         </div>
-                                        {renderMobileAuthButtons()}
                                     </div>
                                 </SheetContent>
                             </Sheet>
@@ -287,12 +159,11 @@ export const Header = () => {
                                 {
                                     menuItems.map((item, index) => (
                                         <li key={index}>
-                                            <Link
-                                                href={item.href}
-                                                onClick={() => handleLinkClick(item.href)}
+                                            <button
+                                                onClick={(e) => handleLinkClick(item.href, e)}
                                                 className="text-muted-foreground hover:text-accent-foreground block duration-150">
                                                 <span>{item.name}</span>
-                                            </Link>
+                                            </button>
                                         </li>
                                     ))
                                 }
@@ -326,5 +197,4 @@ export const Header = () => {
     )
 }
 
-// Export as default to maintain compatibility
-export default Header;
+export default Navbar;
