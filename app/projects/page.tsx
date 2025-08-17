@@ -198,7 +198,7 @@ export default function ProjectsPage() {
                                                         ))
                                                     }
                                                 </div>
-                                                <div className="mt-6 flex items-center gap-4">
+                                                <div className="mt-6 flex items-center justify-center gap-4">
                                                     <Link href={project.link} target="_blank" rel="noopener noreferrer">
                                                         <Button
                                                             variant="outline"
