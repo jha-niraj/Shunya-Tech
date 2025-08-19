@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/navbar";
-
-export const runtime = 'edge';
 import { ThemeProvider } from "@/components/theme-providers";
 import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/sonner";
