@@ -1,5 +1,7 @@
 "use server"
 
+export const runtime = 'edge';
+
 import { prisma } from "@/lib/prisma"
 
 export async function getContactStats() {
