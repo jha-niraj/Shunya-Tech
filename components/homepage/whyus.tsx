@@ -50,7 +50,7 @@ export default function WhyUs() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="text-center mb-16"
+                    className="text-center mb-8"
                 >
                     <Badge className="px-4 py-2 bg-neutral-900 dark:bg-white text-white dark:text-black border-0">
                         <Sparkles className="w-4 h-4 mr-2" />

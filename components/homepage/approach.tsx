@@ -85,7 +85,7 @@ export default function ApproachSection() {
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true }}
-                        className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8"
+                        className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8"
                     >
                         {
                             steps.map((step) => (

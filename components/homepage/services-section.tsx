@@ -99,7 +99,7 @@ export default function ServicesSection() {
                                 >
                                     <div className="h-full flex flex-col items-start p-6 bg-transparent rounded-2xl border-2 border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-300 group-hover:bg-neutral-50 dark:group-hover:bg-neutral-900">
                                         <div className="absolute inset-0 bg-gradient-to-br from-neutral-100/50 to-slate-100/50 dark:from-neutral-900/50 dark:to-slate-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-                                        <div className="relative z-10 w-full">
+                                        <div className="relative z-10 w-full mx-auto">
                                             <div className="w-12 h-12 rounded-xl bg-neutral-900 dark:bg-white flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                                                 <service.icon className="h-6 w-6 text-white dark:text-black" />
                                             </div>
