@@ -1,4 +1,4 @@
-import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
+import { TestimonialsColumn } from "@/components/ui/testimonials-columns";
 import { motion } from "motion/react";
 
 const testimonials = [
