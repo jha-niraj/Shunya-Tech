@@ -93,9 +93,34 @@ export default function ProjectsPage() {
     return (
         <SmoothScroll>
             <div className="min-h-screen">
-                <section className="relative py-32 bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-black dark:to-slate-900 overflow-hidden">
+                <section className="relative py-32 bg-white dark:bg-neutral-950 overflow-hidden">
                     <div className="absolute inset-0 pointer-events-none">
-                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[600px] h-[600px] bg-teal-400/10 rounded-full blur-3xl"></div>
+                        <motion.div
+                            animate={{
+                                x: [0, 200, 0],
+                                y: [0, -150, 0],
+                                scale: [1, 1.2, 1],
+                            }}
+                            transition={{
+                                duration: 25,
+                                repeat: Number.POSITIVE_INFINITY,
+                                ease: "easeInOut",
+                            }}
+                            className="absolute top-1/4 left-1/6 w-96 h-96 bg-gradient-to-r from-neutral-400/15 to-slate-400/15 rounded-full blur-3xl"
+                        />
+                        <motion.div
+                            animate={{
+                                x: [0, -150, 0],
+                                y: [0, 200, 0],
+                                scale: [1, 0.8, 1],
+                            }}
+                            transition={{
+                                duration: 30,
+                                repeat: Number.POSITIVE_INFINITY,
+                                ease: "easeInOut",
+                            }}
+                            className="absolute bottom-1/4 right-1/6 w-80 h-80 bg-gradient-to-r from-slate-400/20 to-neutral-400/20 rounded-full blur-3xl"
+                        />
                     </div>
                     <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
                         <motion.div
@@ -104,21 +129,51 @@ export default function ProjectsPage() {
                             transition={{ duration: 0.5 }}
                             className="text-center"
                         >
-                            <Badge variant="outline" className="px-4 py-2 border-teal-200/30 dark:border-teal-800/30 bg-white/50 dark:bg-black/50 backdrop-blur-xl">
-                                <Code2 className="w-4 h-4 text-teal-500 mr-2" />
-                                <span className="text-teal-700 dark:text-teal-300">Our Projects</span>
-                            </Badge>
-                            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl leading-tight">
-                                Transforming Ideas into <span className="text-teal-500">Digital Realities</span>
-                            </h1>
-                            <p className="mt-6 text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: 0.1 }}
+                            >
+                                <Badge className="px-4 py-2 bg-neutral-900 dark:bg-white text-white dark:text-black border-0 mb-6">
+                                    <Code2 className="w-4 h-4 mr-2" />
+                                    Our Projects
+                                </Badge>
+                            </motion.div>
+                            <motion.h1
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-neutral-900 dark:text-white leading-tight"
+                            >
+                                Transforming Ideas into
+                                <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-neutral-600 to-slate-600 dark:from-neutral-400 dark:to-slate-400">
+                                    Digital Realities
+                                </span>
+                            </motion.h1>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.3 }}
+                                className="mt-6 text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto leading-relaxed"
+                            >
                                 Dive into our diverse portfolio of cutting-edge projects crafted with precision, performance, and purpose. From startups to enterprises — we deliver innovation that speaks for itself.
-                            </p>
-                            <div className="mt-8 flex justify-center gap-4 flex-wrap">
-                                <Button variant="outline" size="lg">
-                                    <Link href="/#contact">Contact Us</Link>
-                                </Button>
-                            </div>
+                            </motion.p>
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.4 }}
+                                className="mt-8 flex justify-center gap-4 flex-wrap"
+                            >
+                                <Link href="/#contact">
+                                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                                        <Button className="bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-black px-8 py-4 rounded-xl text-lg font-semibold shadow-lg">
+                                            Contact Us
+                                            <ArrowRight className="ml-2 h-5 w-5" />
+                                        </Button>
+                                    </motion.div>
+                                </Link>
+                            </motion.div>
                         </motion.div>
                     </div>
                 </section>

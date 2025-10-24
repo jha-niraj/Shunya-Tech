@@ -77,7 +77,7 @@ export default function AboutUsSection() {
                                 <Link href="/contact">Get in Touch</Link>
                             </Button>
                             <Button asChild size="lg" variant="outline" className="rounded-xl border-teal-200 dark:border-teal-800 text-teal-700 dark:text-teal-300 hover:bg-teal-50 dark:hover:bg-teal-950/30">
-                                <Link href="/team">Meet Our Team</Link>
+                                <Link href="/aboutus#team">Meet Our Team</Link>
                             </Button>
                         </div>
                     </motion.div>

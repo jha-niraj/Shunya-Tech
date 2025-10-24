@@ -5,37 +5,37 @@ import { Badge } from "@/components/ui/badge";
 export default function WhyUs() {
     const cards = [
         {
-            icon: <Palette className="w-8 h-8 text-teal-500 group-hover:rotate-45 transition-transform duration-300" />,
+            icon: Palette,
             title: "Creative Excellence",
             description:
                 "Our design team combines creativity with strategic thinking to deliver visually stunning and user-centric digital experiences that resonate with your audience.",
         },
         {
-            icon: <Code className="w-8 h-8 text-teal-500 group-hover:scale-110 transition-transform duration-300" />,
+            icon: Code,
             title: "Technical Expertise",
             description:
                 "We leverage cutting-edge technologies and industry best practices to build robust, scalable, and high-performance digital solutions.",
         },
         {
-            icon: <Shield className="w-8 h-8 text-teal-500 group-hover:-translate-y-1 transition-transform duration-300" />,
+            icon: Shield,
             title: "Quality Assurance",
             description:
                 "Rigorous testing and quality control processes ensure your project meets the highest standards of performance, security, and reliability.",
         },
         {
-            icon: <Sparkles className="w-8 h-8 text-teal-500 group-hover:rotate-12 transition-transform duration-300" />,
+            icon: Sparkles,
             title: "Innovation Focus",
             description:
                 "We stay ahead of digital trends, incorporating innovative solutions and emerging technologies to give your business a competitive edge.",
         },
         {
-            icon: <Clock className="w-8 h-8 text-teal-500 group-hover:rotate-180 transition-transform duration-300" />,
+            icon: Clock,
             title: "Timely Delivery",
             description:
                 "Our proven project management methodology ensures efficient execution and on-time delivery while maintaining transparency throughout the process.",
         },
         {
-            icon: <Handshake className="w-8 h-8 text-teal-500 group-hover:scale-110 transition-transform duration-300" />,
+            icon: Handshake,
             title: "Client Partnership",
             description:
                 "We build lasting partnerships through dedicated support, clear communication, and a deep commitment to understanding and achieving your business goals.",
@@ -43,7 +43,7 @@ export default function WhyUs() {
     ];
 
     return (
-        <section id="whyus" className="py-24 bg-transparent">
+        <section id="whyus" className="py-20 bg-transparent">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -52,32 +52,41 @@ export default function WhyUs() {
                     transition={{ duration: 0.5 }}
                     className="text-center mb-16"
                 >
-                    <Badge variant="outline" className="px-4 py-2 border-teal-200/30 dark:border-teal-800/30 bg-white/50 dark:bg-black/50 backdrop-blur-xl">
-                        <Sparkles className="w-4 h-4 text-teal-500 mr-2" />
-                        <span className="text-teal-700 dark:text-teal-300">Why Choose Us</span>
+                    <Badge className="px-4 py-2 bg-neutral-900 dark:bg-white text-white dark:text-black border-0">
+                        <Sparkles className="w-4 h-4 mr-2" />
+                        Why Choose Us
                     </Badge>
-                    <h2 className="mt-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
-                        Excellence in Every <span className="text-teal-500">Detail</span>
+                    <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white">
+                        Excellence in Every{" "}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-neutral-600 to-slate-600 dark:from-neutral-400 dark:to-slate-400">
+                            Detail
+                        </span>
                     </h2>
-                    <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    <p className="mt-4 text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
                         We combine technical expertise with creative innovation to deliver exceptional digital solutions that drive your business forward.
                     </p>
                 </motion.div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {
                         cards.map((card, index) => (
                             <motion.div
                                 key={index}
-                                className="group flex flex-col items-center justify-center bg-white/50 dark:bg-black/50 backdrop-blur-xl rounded-2xl p-8 border border-teal-200/30 dark:border-teal-800/30 hover:border-teal-500/50 dark:hover:border-teal-500/50 transition-all duration-300"
+                                className="group relative h-full"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.3 }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                             >
-                                {card.icon}
-                                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-4">{card.title}</h3>
-                                <p className="mt-2 text-gray-600 dark:text-gray-300 text-center leading-relaxed">{card.description}</p>
-                                <div className="absolute -z-10 inset-0 bg-gradient-to-br from-teal-500/5 to-emerald-500/5 dark:from-teal-500/10 dark:to-emerald-500/10 rounded-2xl" />
+                                <div className="h-full flex flex-col items-start p-6 bg-transparent rounded-2xl border-2 border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-300 group-hover:bg-neutral-50 dark:group-hover:bg-neutral-900">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-neutral-100/50 to-slate-100/50 dark:from-neutral-900/50 dark:to-slate-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                                    <div className="relative z-10 w-full">
+                                        <div className="w-12 h-12 rounded-xl bg-neutral-900 dark:bg-white flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                                            <card.icon className="h-6 w-6 text-white dark:text-black" />
+                                        </div>
+                                        <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">{card.title}</h3>
+                                        <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{card.description}</p>
+                                    </div>
+                                </div>
                             </motion.div>
                         ))
                     }

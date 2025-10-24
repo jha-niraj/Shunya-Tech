@@ -11,25 +11,6 @@ import { Button } from "@/components/liquidbutton"
 import { BackgroundPaths } from "../backgroundpaths"
 import { WordRotate } from "../wordrotate"
 
-const productsServices = [
-	{
-		icon: Users,
-		title: "Client Services",
-		description: "Bespoke digital solutions crafted specifically for your business goals and challenges",
-		gradient: "from-emerald-400 to-teal-500",
-		bgGradient: "from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20",
-		features: ["Custom Development", "UI/UX Design", "Consulting"],
-	},
-	{
-		icon: Lightbulb,
-		title: "Product Innovation",
-		description: "Revolutionary products built from the ground up with cutting-edge technology",
-		gradient: "from-teal-400 to-emerald-500",
-		bgGradient: "from-teal-50 to-emerald-50 dark:from-teal-950/20 dark:to-emerald-950/20",
-		features: ["SaaS Products", "Mobile Apps", "AI Solutions"],
-	},
-]
-
 const features = [
 	{ icon: Globe, label: "Global Reach" },
 	{ icon: Smartphone, label: "Mobile First" },
@@ -236,29 +217,35 @@ export default function HeroSection() {
 					transition={{ duration: 0.8, delay: 0.4 }}
 					className="mb-8 max-w-7xl mx-auto px-6"
 				>
-					<div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-black via-gray-950 to-black border border-emerald-200/50 dark:border-emerald-800/50 backdrop-blur-xl">
-						<div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-teal-500/5" />
+					<div className="relative overflow-hidden rounded-3xl bg-white dark:bg-neutral-950 border-2 border-neutral-200 dark:border-neutral-800 backdrop-blur-xl">
+						<div className="absolute inset-0 bg-gradient-to-br from-neutral-50 to-slate-50 dark:from-neutral-950 dark:to-neutral-900" />
 						<div className="relative p-8 md:p-12">
-							<div className="text-center mb-8">
-								<Badge className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white border-0 mb-4">
-									<Rocket className="w-4 h-4 mr-2" />
-									Featured Product
-								</Badge>
-								<h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-									Revolutionary{" "}
-									<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
-										Project Management
-									</span>{" "}
-									Platform
+							<div className="text-center mb-12">
+								<motion.div
+									initial={{ opacity: 0, scale: 0.9 }}
+									animate={{ opacity: 1, scale: 1 }}
+									transition={{ duration: 0.5, delay: 0.5 }}
+								>
+									<Badge className="px-4 py-2 bg-neutral-900 dark:bg-white text-white dark:text-black border-0 mb-6 shadow-lg">
+										<Rocket className="w-4 h-4 mr-2" />
+										Featured Product
+									</Badge>
+								</motion.div>
+								<h2 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-6 tracking-tight">
+									Revolutionary Project
+									<br />
+									<span className="text-transparent bg-clip-text bg-gradient-to-r from-neutral-600 to-slate-600 dark:from-neutral-400 dark:to-slate-400">
+										Management Platform
+									</span>
 								</h2>
-								<p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-									Experience the future of client collaboration with our cutting-edge project management platform.{" "}
-									<span className="text-emerald-700 dark:text-emerald-400 font-medium">
-										Login, track, collaborate, and watch your projects come to life in real-time.
+								<p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto leading-relaxed">
+									Experience the future of client collaboration with our cutting-edge platform.{" "}
+									<span className="text-neutral-900 dark:text-white font-medium">
+										Track, collaborate, and bring your projects to life in real-time.
 									</span>
 								</p>
 							</div>
-							<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+							<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
 								{
 									productFeatures.map((feature, index) => (
 										<motion.div
@@ -266,28 +253,38 @@ export default function HeroSection() {
 											initial={{ opacity: 0, y: 20 }}
 											animate={{ opacity: 1, y: 0 }}
 											transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-											className="group"
+											className="group relative"
 										>
-											<div className="flex flex-col items-center justify-center bg-white/80 dark:bg-black/80 backdrop-blur-xl rounded-2xl p-6 border border-emerald-100 dark:border-emerald-900 hover:border-emerald-300 dark:hover:border-emerald-700 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg">
-												<feature.icon className="w-8 h-8 text-emerald-600 dark:text-emerald-400 mb-4 group-hover:scale-110 transition-transform duration-300" />
-												<h3 className="font-semibold text-slate-900 dark:text-white mb-2">{feature.title}</h3>
-												<p className="text-sm text-center text-slate-600 dark:text-slate-400">{feature.description}</p>
+											<div className="h-full flex flex-col items-start justify-start bg-transparent rounded-2xl p-6 border-2 border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-300 group-hover:bg-neutral-50 dark:group-hover:bg-neutral-900">
+												<div className="absolute inset-0 bg-gradient-to-br from-neutral-100/50 to-slate-100/50 dark:from-neutral-900/50 dark:to-slate-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+												<div className="relative z-10 w-full">
+													<div className="w-12 h-12 rounded-xl bg-neutral-900 dark:bg-white flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+														<feature.icon className="w-6 h-6 text-white dark:text-black" />
+													</div>
+													<h3 className="font-semibold text-lg text-neutral-900 dark:text-white mb-2">{feature.title}</h3>
+													<p className="text-sm text-neutral-600 dark:text-neutral-400">{feature.description}</p>
+												</div>
 											</div>
 										</motion.div>
 									))
 								}
 							</div>
 							<div className="text-center">
-								<div className="flex flex-col sm:flex-row gap-4 justify-center">
+								<div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
 									<Link href="https://projectcentral.nirajjha.xyz" target="_blank">
-										<Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-											<Monitor className="mr-2 h-5 w-5" />
-										Get Started
-										</Button>
+										<motion.div
+											whileHover={{ scale: 1.02 }}
+											whileTap={{ scale: 0.98 }}
+										>
+											<Button className="bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-black px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+												<Monitor className="mr-2 h-5 w-5" />
+												Get Started Now
+											</Button>
+										</motion.div>
 									</Link>
 								</div>
-								<p className="text-sm text-slate-500 dark:text-slate-400 mt-4">
-									Join hundreds of clients already managing their projects seamlessly
+								<p className="text-sm text-neutral-500 dark:text-neutral-500">
+									Join hundreds of clients managing their projects seamlessly
 								</p>
 							</div>
 						</div>
@@ -316,91 +313,6 @@ export default function HeroSection() {
 							</motion.div>
 						))
 					}
-				</motion.div>
-				<motion.div
-					initial={{ opacity: 0, y: 50 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 1, delay: 0.8 }}
-					className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 mb-8 px-6"
-				>
-					{
-						productsServices.map((service, index) => (
-							<motion.div
-								key={service.title}
-								initial={{ opacity: 0, x: index === 0 ? -50 : 50 }}
-								animate={{ opacity: 1, x: 0 }}
-								transition={{ duration: 0.8, delay: 1 + index * 0.2 }}
-								className="group"
-							>
-								<Card
-									className={`relative p-8 bg-gradient-to-br ${service.bgGradient} border-0 shadow-xl hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 overflow-hidden`}
-								>
-									<div className="absolute inset-0 opacity-5">
-										<div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(0,0,0,.1)_25%,rgba(0,0,0,.1)_50%,transparent_50%,transparent_75%,rgba(0,0,0,.1)_75%)] bg-[length:20px_20px]" />
-									</div>
-
-									<div className="relative z-10">
-										<div
-											className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${service.gradient} p-4 mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg`}
-										>
-											<service.icon className="w-8 h-8 text-white" />
-										</div>
-										<h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors duration-300">
-											{service.title}
-										</h3>
-										<p className="text-slate-600 dark:text-slate-300 text-base leading-relaxed mb-6">
-											{service.description}
-										</p>
-										<div className="flex flex-wrap gap-2">
-											{
-												service.features.map((feature, idx) => (
-													<Badge
-														key={idx}
-														variant="secondary"
-														className="bg-white/50 dark:bg-black/50 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800"
-													>
-														{feature}
-													</Badge>
-												))
-											}
-										</div>
-									</div>
-									<div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-								</Card>
-							</motion.div>
-						))
-					}
-				</motion.div>
-				<motion.div
-					initial={{ opacity: 0, y: 40 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.8, delay: 1.2 }}
-					className="mt-8 max-w-7xl mx-auto mb-8 px-6"
-				>
-					<div className="text-center mb-12">
-						<h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4">Why Choose Us?</h2>
-						<p className="text-slate-600 dark:text-slate-300 text-lg max-w-2xl mx-auto">
-							We combine technical expertise with creative innovation to deliver exceptional results
-						</p>
-					</div>
-					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-						{
-							features.map((feature, index) => (
-								<motion.div
-									key={feature.label}
-									initial={{ opacity: 0, y: 20 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
-									className="group text-center"
-								>
-									<div className="bg-white/80 dark:bg-black/80 backdrop-blur-xl rounded-2xl p-6 border border-emerald-100 dark:border-emerald-900 hover:border-emerald-300 dark:hover:border-emerald-700 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-lg">
-										<feature.icon className="w-8 h-8 text-emerald-600 dark:text-emerald-400 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
-										<div className="text-sm font-medium text-slate-700 dark:text-slate-300">{feature.label}</div>
-									</div>
-								</motion.div>
-							))
-						}
-					</div>
 				</motion.div>
 			</div>
 		</div>

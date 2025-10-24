@@ -39,6 +39,22 @@ export default function RootLayout({
 			<head>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<link rel="icon" href="/shunyatech.ico" />
+
+				<title>Shunya Tech</title>
+				<meta name="description" content="Leave technalities to us, just work on building your products." />
+
+				<meta property="og:url" content="https://shunya.nirajjha.xyz" />
+				<meta property="og:type" content="website" />
+				<meta property="og:title" content="Shunya Tech" />
+				<meta property="og:description" content="Leave technalities to us, just work on building your products." />
+				<meta property="og:image" content="https://opengraph.b-cdn.net/production/images/f71f0216-3b30-47a0-9891-ce57484aa7d1.png?token=MVW4Q5baCz33x3bNCQYrEbiRtxU7vhm74tZel8wwrJM&height=1200&width=1200&expires=33297316036" />
+
+				<meta name="twitter:card" content="summary_large_image" />
+				<meta property="twitter:domain" content="shunya.nirajjha.xyz" />
+				<meta property="twitter:url" content="https://shunya.nirajjha.xyz" />
+				<meta name="twitter:title" content="Shunya Tech" />
+				<meta name="twitter:description" content="Leave technalities to us, just work on building your products." />
+				<meta name="twitter:image" content="https://opengraph.b-cdn.net/production/images/f71f0216-3b30-47a0-9891-ce57484aa7d1.png?token=MVW4Q5baCz33x3bNCQYrEbiRtxU7vhm74tZel8wwrJM&height=1200&width=1200&expires=33297316036" />
 			</head>
 			<body
 				className={`${geistSans.variable} ${spaceGrotesk.className} ${geistMono.variable} antialiased`}

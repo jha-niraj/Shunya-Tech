@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-providers";
-import Footer from "@/components/homepage/footer";
+import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/sonner";
 import { Suspense } from "react";
 
