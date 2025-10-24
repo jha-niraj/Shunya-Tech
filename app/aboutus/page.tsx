@@ -1,5 +1,8 @@
 "use client"
 
+import { Linkedin } from "lucide-react"
+import Link from "next/link"
+
 const values = [
     {
         icon: "🎯",
@@ -58,6 +61,7 @@ const teamMembers = [
         bio: "Visionary leader with 8+ years in tech. Passionate about building products that matter.",
         image: "/professional-man-ceo.jpg",
         specialty: "Leadership",
+        linkedin: "https://linkedin.com/in/nirajjha",
     },
     {
         name: "Priya Sharma",
@@ -65,6 +69,7 @@ const teamMembers = [
         bio: "Full-stack architect specializing in scalable systems. Drives our technical excellence.",
         image: "/professional-woman-tech.jpg",
         specialty: "Architecture",
+        linkedin: "https://linkedin.com/in/priyasharma",
     },
     {
         name: "Rahul Verma",
@@ -72,6 +77,7 @@ const teamMembers = [
         bio: "Design-driven innovator creating beautiful, intuitive user experiences.",
         image: "/professional-man-designer.jpg",
         specialty: "Design",
+        linkedin: "https://linkedin.com/in/rahulverma",
     },
     {
         name: "Anjali Patel",
@@ -79,6 +85,7 @@ const teamMembers = [
         bio: "Experienced engineer leading our development team with precision and creativity.",
         image: "/professional-woman-engineer.jpg",
         specialty: "Engineering",
+        linkedin: "https://linkedin.com/in/anjalipatel",
     },
     {
         name: "Vikram Singh",
@@ -86,6 +93,7 @@ const teamMembers = [
         bio: "Expert in modern web technologies. Builds robust, scalable applications.",
         image: "/professional-man-developer.jpg",
         specialty: "Full-Stack",
+        linkedin: "https://linkedin.com/in/vikramsingh",
     },
     {
         name: "Neha Gupta",
@@ -93,6 +101,7 @@ const teamMembers = [
         bio: "Strategic thinker focused on delivering products that solve real user problems.",
         image: "/professional-woman-product.jpg",
         specialty: "Product",
+        linkedin: "https://linkedin.com/in/nehagupta",
     },
     {
         name: "Arjun Desai",
@@ -100,6 +109,7 @@ const teamMembers = [
         bio: "UI/UX specialist crafting pixel-perfect interfaces with React and modern frameworks.",
         image: "/professional-man-frontend.jpg",
         specialty: "Frontend",
+        linkedin: "https://linkedin.com/in/arjundesai",
     },
     {
         name: "Divya Nair",
@@ -107,6 +117,7 @@ const teamMembers = [
         bio: "Database and infrastructure expert ensuring our systems scale seamlessly.",
         image: "/professional-woman-backend.jpg",
         specialty: "Backend",
+        linkedin: "https://linkedin.com/in/divyanair",
     },
     {
         name: "Karan Malhotra",
@@ -114,6 +125,7 @@ const teamMembers = [
         bio: "Cloud infrastructure specialist optimizing deployment and system reliability.",
         image: "/professional-man-devops.jpg",
         specialty: "DevOps",
+        linkedin: "https://linkedin.com/in/karanmalhotra",
     },
     {
         name: "Sophia Chen",
@@ -121,6 +133,7 @@ const teamMembers = [
         bio: "Data-driven researcher uncovering user insights to guide product decisions.",
         image: "/professional-woman-researcher.jpg",
         specialty: "Research",
+        linkedin: "https://linkedin.com/in/sophiachen",
     },
 ]
 
@@ -264,7 +277,17 @@ export default function AboutPage() {
 
                                         <h3 className="text-lg font-bold text-foreground mb-1">{member.name}</h3>
                                         <p className="text-teal-600 dark:text-teal-400 text-sm font-semibold mb-3">{member.role}</p>
-                                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">{member.bio}</p>
+                                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-4">{member.bio}</p>
+                                        
+                                        <Link
+                                            href={member.linkedin}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-black dark:bg-white text-white dark:text-black text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors duration-200 group"
+                                        >
+                                            <Linkedin className="h-4 w-4 group-hover:scale-110 transition-transform duration-200" />
+                                            LinkedIn
+                                        </Link>
                                     </div>
                                 </div>
                             ))
