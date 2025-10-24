@@ -1,226 +1,304 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Badge } from "@/components/ui/badge"
-import { Building2, Target, Users2, Lightbulb } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import SmoothScroll from "@/components/smoothscroll"
-import { Button } from "@/components/ui/button"
-
+const values = [
+    {
+        icon: "🎯",
+        title: "Innovation",
+        description: "We push boundaries and embrace new technologies to create cutting-edge solutions.",
+    },
+    {
+        icon: "🤝",
+        title: "Collaboration",
+        description: "We believe in the power of teamwork and open communication with clients and team members.",
+    },
+    {
+        icon: "⚡",
+        title: "Excellence",
+        description: "We never compromise on quality. Every project receives our full attention and expertise.",
+    },
+    {
+        icon: "🚀",
+        title: "Impact",
+        description: "We measure success by the real-world impact our solutions create for our clients.",
+    },
+    {
+        icon: "🔒",
+        title: "Integrity",
+        description: "We operate with transparency and honesty in all our business relationships.",
+    },
+]
+const milestones = [
+    {
+        year: "2019",
+        title: "Founded",
+        description: "Shunya Tech is born with a vision to revolutionize digital solutions",
+    },
+    {
+        year: "2020",
+        title: "First 10 Clients",
+        description: "Rapid growth as we deliver exceptional results for early adopters",
+    },
+    {
+        year: "2021",
+        title: "Product Launch",
+        description: "Released our first internal product, expanding beyond client services",
+    },
+    { year: "2022", title: "50+ Clients", description: "Scaled to serve diverse industries with tailored solutions" },
+    {
+        year: "2023",
+        title: "150+ Projects",
+        description: "Milestone achievement in project delivery and client satisfaction",
+    },
+    { year: "2024", title: "Global Reach", description: "Expanded operations and serving clients worldwide" },
+]
 const teamMembers = [
     {
-        id: 1,
-        name: "John Smith",
-        role: "CEO & Founder",
-        image: "/team/ceo.jpg",
-        bio: "15+ years of experience in tech leadership and innovation",
-        linkedin: "https://linkedin.com"
+        name: "Niraj Jha",
+        role: "Founder & CEO",
+        bio: "Visionary leader with 8+ years in tech. Passionate about building products that matter.",
+        image: "/professional-man-ceo.jpg",
+        specialty: "Leadership",
     },
     {
-        id: 2,
-        name: "Sarah Johnson",
-        role: "CTO",
-        image: "/team/cto.jpg",
-        bio: "Expert in cloud architecture and emerging technologies",
-        linkedin: "https://linkedin.com"
+        name: "Priya Sharma",
+        role: "CTO & Co-Founder",
+        bio: "Full-stack architect specializing in scalable systems. Drives our technical excellence.",
+        image: "/professional-woman-tech.jpg",
+        specialty: "Architecture",
     },
     {
-        id: 3,
-        name: "Michael Chen",
-        role: "Lead Developer",
-        image: "/team/lead-dev.jpg",
-        bio: "Full-stack developer with a passion for clean code",
-        linkedin: "https://linkedin.com"
+        name: "Rahul Verma",
+        role: "Lead Product Designer",
+        bio: "Design-driven innovator creating beautiful, intuitive user experiences.",
+        image: "/professional-man-designer.jpg",
+        specialty: "Design",
     },
     {
-        id: 4,
-        name: "Emily Davis",
+        name: "Anjali Patel",
+        role: "Head of Engineering",
+        bio: "Experienced engineer leading our development team with precision and creativity.",
+        image: "/professional-woman-engineer.jpg",
+        specialty: "Engineering",
+    },
+    {
+        name: "Vikram Singh",
+        role: "Senior Full-Stack Developer",
+        bio: "Expert in modern web technologies. Builds robust, scalable applications.",
+        image: "/professional-man-developer.jpg",
+        specialty: "Full-Stack",
+    },
+    {
+        name: "Neha Gupta",
         role: "Product Manager",
-        image: "/team/pm.jpg",
-        bio: "Driving product vision and user experience",
-        linkedin: "https://linkedin.com"
+        bio: "Strategic thinker focused on delivering products that solve real user problems.",
+        image: "/professional-woman-product.jpg",
+        specialty: "Product",
     },
     {
-        id: 5,
-        name: "Alex Turner",
-        role: "UI/UX Designer",
-        image: "/team/designer.jpg",
-        bio: "Creating beautiful and intuitive interfaces",
-        linkedin: "https://linkedin.com"
+        name: "Arjun Desai",
+        role: "Frontend Lead",
+        bio: "UI/UX specialist crafting pixel-perfect interfaces with React and modern frameworks.",
+        image: "/professional-man-frontend.jpg",
+        specialty: "Frontend",
     },
     {
-        id: 6,
-        name: "Lisa Wang",
-        role: "Marketing Director",
-        image: "/team/marketing.jpg",
-        bio: "Digital marketing expert with global experience",
-        linkedin: "https://linkedin.com"
-    }
-];
+        name: "Divya Nair",
+        role: "Backend Architect",
+        bio: "Database and infrastructure expert ensuring our systems scale seamlessly.",
+        image: "/professional-woman-backend.jpg",
+        specialty: "Backend",
+    },
+    {
+        name: "Karan Malhotra",
+        role: "DevOps Engineer",
+        bio: "Cloud infrastructure specialist optimizing deployment and system reliability.",
+        image: "/professional-man-devops.jpg",
+        specialty: "DevOps",
+    },
+    {
+        name: "Sophia Chen",
+        role: "UX Researcher",
+        bio: "Data-driven researcher uncovering user insights to guide product decisions.",
+        image: "/professional-woman-researcher.jpg",
+        specialty: "Research",
+    },
+]
 
-const container = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1
-        }
-    }
-};
-
-const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
-};
-
-export default function AboutUsPage() {
-    const scrollToSection = (sectionId: string) => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
+export default function AboutPage() {
 
     return (
-        <SmoothScroll>
-            <div className="min-h-screen">
-                <section className="relative py-40 bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-black dark:to-slate-900 overflow-hidden">
-                    <div className="absolute inset-0 pointer-events-none">
-                        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-fuchsia-400/10 rounded-full blur-3xl"></div>
+        <main className="min-h-screen bg-background">
+            <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-background/50">
+                <div className="absolute inset-0 opacity-10">
+                    <svg className="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+                        <defs>
+                            <pattern id="lines" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+                                <line x1="0" y1="0" x2="50" y2="50" stroke="currentColor" strokeWidth="1" />
+                            </pattern>
+                        </defs>
+                        <rect width="1000" height="1000" fill="url(#lines)" />
+                    </svg>
+                </div>
+                <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+                    <div className="inline-block mb-6 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/30 dark:border-teal-400/30">
+                        <span className="text-teal-600 dark:text-teal-400 text-sm font-medium">About Shunya Tech</span>
                     </div>
-                    <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="text-center"
-                        >
-                            <Badge variant="outline" className="px-4 py-2 border-teal-200/30 dark:border-teal-800/30 bg-white/50 dark:bg-black/50 backdrop-blur-xl">
-                                <Building2 className="w-4 h-4 text-teal-500 mr-2" />
-                                <span className="text-teal-700 dark:text-teal-300">About Us</span>
-                            </Badge>
-                            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl leading-tight">
-                                Innovating for <span className="text-indigo-500">a Smarter Tomorrow</span>
-                            </h1>
-                            <p className="mt-6 text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                                We are a team of engineers, designers, and strategists passionate about building scalable digital solutions. Our mission is to empower businesses with the technology they need to thrive in a connected world.
+                    <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
+                        Building the Future,
+                        <br />
+                        <span className="text-teal-600 dark:text-teal-400">One Product at a Time</span>
+                    </h1>
+                    <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                        We're an agency that doesn't just build for clients—we build products that matter. Combining strategic
+                        thinking with cutting-edge technology to create solutions that drive real impact.
+                    </p>
+                </div>
+            </section>
+            <section className="py-20 md:py-32 px-6 bg-background">
+                <div className="max-w-5xl mx-auto">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Our Story</h2>
+                            <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+                                Shunya Tech was founded with a simple belief: great technology should solve real problems. What started as
+                                a small team of passionate developers has grown into a full-service agency delivering world-class
+                                solutions to clients across industries.
                             </p>
-                            <div className="mt-8 flex justify-center gap-4 flex-wrap">
-                                <Button 
-                                    variant="default" 
-                                    size="lg"
-                                    onClick={() => scrollToSection("team")}
-                                >
-                                    Meet the Team
-                                </Button>
-                                <Button variant="outline" size="lg">
-                                    <Link href="/#approach">Our Approach</Link>
-                                </Button>
+                            <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+                                But we didn't stop at client work. We built our own products—platforms that reflect our commitment to
+                                innovation and excellence. Today, we balance both: delivering exceptional client solutions while nurturing
+                                our own product ecosystem.
+                            </p>
+                            <p className="text-muted-foreground text-lg leading-relaxed">
+                                Our journey is defined by curiosity, collaboration, and a relentless pursuit of quality. Every project,
+                                every product, every line of code represents our commitment to excellence.
+                            </p>
+                        </div>
+                        <div className="relative h-96 bg-gradient-to-br from-teal-500/10 to-blue-500/10 dark:from-teal-500/20 dark:to-blue-500/20 rounded-xl border border-teal-500/20 dark:border-teal-500/30 flex items-center justify-center shadow-lg dark:shadow-teal-500/10">
+                            <div className="text-center">
+                                <div className="text-6xl font-bold text-teal-600 dark:text-teal-400 mb-2">5+</div>
+                                <p className="text-muted-foreground font-medium">Years of Excellence</p>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
-                </section>
-                <section className="py-8">
-                    <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                        <motion.div
-                            variants={container}
-                            initial="hidden"
-                            whileInView="show"
-                            viewport={{ once: true }}
-                            className="grid grid-cols-1 md:grid-cols-2 gap-12"
-                        >
-                            <motion.div
-                                variants={item}
-                                className="shadow-lg hover:shadow-2xl transition-all duration-300 rounded-2xl bg-white/50 dark:bg-black/50 backdrop-blur-xl rounded-2xl p-8 border border-teal-200/30 dark:border-teal-800/30"
-                            >
-                                <Target className="w-12 h-12 text-teal-500 mb-6" />
-                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Mission</h2>
-                                <p className="text-gray-600 dark:text-gray-300">
-                                    To empower businesses with cutting-edge technology solutions that drive growth, efficiency, and innovation. We strive to be at the forefront of digital transformation, delivering exceptional value to our clients.
-                                </p>
-                            </motion.div>
-                            <motion.div
-                                variants={item}
-                                className="shadow-lg hover:shadow-2xl transition-all duration-300 rounded-2xl bg-white/50 dark:bg-black/50 backdrop-blur-xl rounded-2xl p-8 border border-teal-200/30 dark:border-teal-800/30"
-                            >
-                                <Lightbulb className="w-12 h-12 text-teal-500 mb-6" />
-                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Vision</h2>
-                                <p className="text-gray-600 dark:text-gray-300">
-                                    To be the leading force in digital innovation, recognized globally for our commitment to excellence, sustainability, and creating meaningful impact through technology.
-                                </p>
-                            </motion.div>
-                        </motion.div>
+                </div>
+            </section>
+            <section className="py-20 md:py-32 px-6 bg-background">
+                <div className="max-w-6xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Mission & Values</h2>
+                        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                            We're committed to delivering exceptional value through innovation, collaboration, and unwavering
+                            excellence.
+                        </p>
                     </div>
-                </section>
-                <section id="team" className="py-24 bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-black dark:to-slate-900">
-                    <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                            className="text-center mb-16"
-                        >
-                            <Badge variant="outline" className="px-4 py-2 border-teal-200/30 dark:border-teal-800/30 bg-white/50 dark:bg-black/50 backdrop-blur-xl">
-                                <Users2 className="w-4 h-4 text-teal-500 mr-2" />
-                                <span className="text-teal-700 dark:text-teal-300">Our Team</span>
-                            </Badge>
-                            <h2 className="mt-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
-                                Meet the Innovators
-                            </h2>
-                            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                                Our diverse team brings together expertise from various domains to deliver exceptional results.
-                            </p>
-                        </motion.div>
-                        <motion.div
-                            variants={container}
-                            initial="hidden"
-                            whileInView="show"
-                            viewport={{ once: true }}
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                        >
+                    <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+                        {
+                            values.map((value, index) => (
+                                <div
+                                    key={index}
+                                    className="group p-6 rounded-xl bg-card border border-border hover:border-teal-500/50 dark:hover:border-teal-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/10 dark:hover:shadow-teal-400/10"
+                                >
+                                    <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{value.icon}</div>
+                                    <h3 className="text-xl font-bold text-foreground mb-2">{value.title}</h3>
+                                    <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </section>
+            <section className="py-20 md:py-32 px-6 bg-background">
+                <div className="max-w-5xl mx-auto">
+                    <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-16 text-center">Our Journey</h2>
+
+                    <div className="relative">
+                        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-teal-600 dark:from-teal-400 to-blue-600 dark:to-blue-400 hidden md:block" />
+                        <div className="space-y-12">
                             {
-                                teamMembers.map((member) => (
-                                    <motion.div
-                                        key={member.id}
-                                        variants={item}
-                                        className="group relative bg-white/50 dark:bg-black/50 backdrop-blur-xl rounded-2xl p-6 border border-teal-200/30 dark:border-teal-800/30 hover:border-teal-300 dark:hover:border-teal-700 transition-all duration-300"
-                                    >
-                                        <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden">
-                                            <Image
-                                                src={member.image}
-                                                alt={member.name}
-                                                fill
-                                                className="object-cover transition-transform duration-300 group-hover:scale-110"
-                                            />
+                                milestones.map((milestone, index) => (
+                                    <div key={index} className={`flex gap-8 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
+                                        <div className="flex-1 md:text-right">
+                                            <div className="text-teal-600 dark:text-teal-400 font-bold text-lg mb-2">{milestone.year}</div>
+                                            <h3 className="text-2xl font-bold text-foreground mb-2">{milestone.title}</h3>
+                                            <p className="text-muted-foreground">{milestone.description}</p>
                                         </div>
-                                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                                            {member.name}
-                                        </h3>
-                                        <p className="text-teal-600 dark:text-teal-400 font-medium mt-1">
-                                            {member.role}
-                                        </p>
-                                        <p className="mt-4 text-gray-600 dark:text-gray-300">
-                                            {member.bio}
-                                        </p>
-                                        <div className="mt-6">
-                                            <Link
-                                                href={member.linkedin}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 transition-colors"
-                                            >
-                                                Connect on LinkedIn →
-                                            </Link>
+                                        <div className="hidden md:flex justify-center">
+                                            <div className="w-4 h-4 rounded-full bg-teal-600 dark:bg-teal-400 border-4 border-background" />
                                         </div>
-                                    </motion.div>
+                                        <div className="flex-1" />
+                                    </div>
                                 ))
                             }
-                        </motion.div>
+                        </div>
                     </div>
-                </section>
-            </div>
-        </SmoothScroll>
+                </div>
+            </section>
+            <section className="py-20 md:py-32 px-6 bg-background">
+                <div className="max-w-6xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Meet Our Team</h2>
+                        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                            Talented individuals united by a passion for excellence and innovation.
+                        </p>
+                    </div>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+                        {
+                            teamMembers.map((member, index) => (
+                                <div
+                                    key={index}
+                                    className="group rounded-xl overflow-hidden bg-card border border-border hover:border-teal-500/50 dark:hover:border-teal-400/50 transition-all duration-300 hover:shadow-xl hover:shadow-teal-500/10 dark:hover:shadow-teal-400/10"
+                                >
+                                    <div className="relative h-48 overflow-hidden bg-gradient-to-br from-teal-500/10 to-blue-500/10 dark:from-teal-500/20 dark:to-blue-500/20">
+                                        <img
+                                            src={member.image || "/placeholder.svg"}
+                                            alt={member.name}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    </div>
+                                    <div className="p-5">
+                                        <div className="inline-block mb-3 px-2.5 py-1 rounded-full bg-teal-500/10 dark:bg-teal-500/20 border border-teal-500/30 dark:border-teal-400/30">
+                                            <span className="text-teal-600 dark:text-teal-400 text-xs font-semibold">{member.specialty}</span>
+                                        </div>
+
+                                        <h3 className="text-lg font-bold text-foreground mb-1">{member.name}</h3>
+                                        <p className="text-teal-600 dark:text-teal-400 text-sm font-semibold mb-3">{member.role}</p>
+                                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">{member.bio}</p>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </section>
+            <section className="py-20 md:py-32 px-6 bg-background">
+                <div className="max-w-5xl mx-auto">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div className="relative h-96 bg-gradient-to-br from-teal-500/10 to-blue-500/10 dark:from-teal-500/20 dark:to-blue-500/20 rounded-xl border border-teal-500/20 dark:border-teal-500/30 flex items-center justify-center shadow-lg dark:shadow-teal-500/10">
+                            <div className="text-center">
+                                <div className="text-6xl font-bold text-teal-600 dark:text-teal-400 mb-2">24/7</div>
+                                <p className="text-muted-foreground font-medium">Support Available</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Our Culture</h2>
+                            <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+                                At Shunya Tech, we believe that great work comes from great people working together. Our culture is built
+                                on trust, transparency, and continuous learning.
+                            </p>
+                            <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+                                We invest in our team's growth, celebrate wins together, and learn from challenges. Whether you're working
+                                on a client project or building our next product, you're part of something bigger.
+                            </p>
+                            <p className="text-muted-foreground text-lg leading-relaxed">
+                                We're not just a company—we're a community of builders, thinkers, and innovators committed to making a
+                                difference in the digital world.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     )
 }
