@@ -61,10 +61,12 @@ export default function AboutUsSection() {
                                         transition={{ duration: 0.5 }}
                                         className="relative bg-white/50 dark:bg-black/50 backdrop-blur-xl rounded-xl p-4 border border-teal-200/30 dark:border-teal-800/30"
                                     >
+                                        <div className="flex gap-2">
                                         <feature.icon className="h-6 w-6 text-teal-500 mb-2" />
                                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                                             {feature.name}
                                         </h3>
+                                        </div>
                                         <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
                                             {feature.description}
                                         </p>
