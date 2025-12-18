@@ -99,7 +99,7 @@ export const Navbar = () => {
                         <div className="hidden lg:flex items-center gap-3">
                             <ThemeToggle />
                             <div className="h-8 w-[1px] bg-neutral-200 dark:bg-neutral-800 mx-1" />
-                            <Link href="/contact">
+                            <Link href="/contactusus">
                                 <button className="cursor-pointer flex items-center gap-2 px-5 py-2.5 rounded-full border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all text-sm font-medium">
                                     <Mail className="w-4 h-4" />
                                     <span>Contact</span>
@@ -141,7 +141,7 @@ export const Navbar = () => {
                                     }
                                     <div className="pt-8 mt-4 border-t border-neutral-200 dark:border-neutral-800 grid grid-cols-2 gap-4">
                                         <SheetClose asChild>
-                                            <Link href="/contact" className="w-full">
+                                            <Link href="/contactus" className="w-full">
                                                 <button className="w-full flex items-center justify-center gap-2 py-4 rounded-xl border border-neutral-200 dark:border-neutral-800 font-medium hover:bg-neutral-50 dark:hover:bg-neutral-900">
                                                     <Mail className="w-4 h-4" /> Contact
                                                 </button>

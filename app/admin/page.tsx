@@ -203,7 +203,7 @@ export default function AdminDashboard() {
                                     Recent Inquiries
                                 </CardTitle>
                                 <Button asChild variant="outline" size="sm">
-                                    <Link href="/admin/contactinquiry" className="flex items-center gap-2">
+                                    <Link href="/admin/contactusinquiry" className="flex items-center gap-2">
                                         <Eye className="h-4 w-4" />
                                         View All
                                         <ArrowRight className="h-4 w-4" />
@@ -284,7 +284,7 @@ export default function AdminDashboard() {
                     <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Quick Actions</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <Button asChild size="lg" className="h-auto p-6 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
-                            <Link href="/admin/contactinquiry" className="flex flex-col items-center space-y-2">
+                            <Link href="/admin/contactusinquiry" className="flex flex-col items-center space-y-2">
                                 <MessageSquare className="h-8 w-8" />
                                 <span>Manage Inquiries</span>
                             </Link>
@@ -296,7 +296,7 @@ export default function AdminDashboard() {
                             </Link>
                         </Button>
                         <Button asChild size="lg" variant="outline" className="h-auto p-6">
-                            <Link href="/contact" className="flex flex-col items-center space-y-2">
+                            <Link href="/contactus" className="flex flex-col items-center space-y-2">
                                 <Mail className="h-8 w-8" />
                                 <span>Contact Page</span>
                             </Link>

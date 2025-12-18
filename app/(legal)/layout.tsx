@@ -1,6 +1,3 @@
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
-
 export default function LegalLayout({
     children,
 }: Readonly<{
@@ -8,9 +5,7 @@ export default function LegalLayout({
 }>) {
     return (
         <section className="min-h-screen">
-            <Navbar />
             {children}
-            <Footer />
         </section>
     );
 } 

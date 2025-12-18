@@ -198,7 +198,7 @@ export default function LandingPage() {
 								high-performance engineering to build systems that matter.
 							</p>
 							<div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-								<Link href="/contact">
+								<Link href="/contactus">
 									<Button className="h-14 px-8 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200 text-lg font-bold shadow-lg hover:shadow-xl transition-all">
 										Initiate Project <ArrowRight className="ml-2 w-5 h-5" />
 									</Button>
@@ -597,7 +597,7 @@ export default function LandingPage() {
 								Deploy your vision with a team that understands engineering at scale.
 							</p>
 							<div className="flex flex-col sm:flex-row gap-4 justify-center">
-								<Link href="/contact">
+								<Link href="/contactus">
 									<Button className="h-14 px-8 rounded-full bg-white dark:bg-black text-black dark:text-white hover:scale-105 transition-transform font-bold text-lg">
 										Start Project
 									</Button>

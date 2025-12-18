@@ -379,7 +379,7 @@ export default function PricingPage() {
                                                                 ))
                                                             }
                                                         </div>
-                                                        <Link href="/contact" className="w-full mt-auto">
+                                                        <Link href="/contactus" className="w-full mt-auto">
                                                             <button className={`w-full py-4 rounded-xl font-bold transition-all ${tier.popular
                                                                     ? "bg-white dark:bg-black text-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900"
                                                                     : "bg-neutral-900 dark:bg-white text-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-200"}`}>
@@ -403,7 +403,7 @@ export default function PricingPage() {
                             For enterprise requirements, legacy migrations, or specific SLA needs,
                             we offer a bespoke pricing model based on engineering hours and resource allocation.
                         </p>
-                        <Link href="/contact" className="cursor-pointer inline-flex items-center font-bold border-b border-neutral-900 dark:border-white pb-0.5 hover:opacity-70 transition-opacity">
+                        <Link href="/contactus" className="cursor-pointer inline-flex items-center font-bold border-b border-neutral-900 dark:border-white pb-0.5 hover:opacity-70 transition-opacity">
                             Schedule a Technical Discovery Call <ArrowRight className="ml-2 w-4 h-4" />
                         </Link>
                     </div>

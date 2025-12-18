@@ -54,7 +54,7 @@ export default function CTAPage() {
                         transition={{ duration: 0.5, delay: 0.5 }}
                         className="flex flex-col sm:flex-row gap-4 justify-center"
                     >
-                        <Link href="/contact">
+                        <Link href="/contactus">
                             <motion.button
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}

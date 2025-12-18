@@ -34,7 +34,7 @@ export default function PricingPage() {
                                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                                 </Button>
                             </Link>
-                            <Link href="/contact">
+                            <Link href="/contactus">
                                 <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
                                     Contact for Custom Plans
                                 </Button>
@@ -556,7 +556,7 @@ export default function PricingPage() {
                                 </div>
                             </div>
                             <div className="mt-8">
-                                <Link href="/contact">
+                                <Link href="/contactus">
                                     <Button variant="outline" className="group bg-teal-600 text-white hover:bg-teal-700">
                                         Schedule a Consultation
                                         <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -746,7 +746,7 @@ export default function PricingPage() {
                                         <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                                     </Button>
                                 </Link>
-                                <Link href="/contact">
+                                <Link href="/contactus">
                                     <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
                                         Schedule a Consultation
                                     </Button>

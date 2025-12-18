@@ -1,13 +1,15 @@
 "use client"
 
 import SmoothScroll from "@/components/smoothscroll"
-import { ArrowUpRight, Linkedin, Twitter, Code2, Users, Globe, Zap } from "lucide-react"
+import {
+    ArrowUpRight, Linkedin, Twitter, Code2, Users, Globe, Zap
+} from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { motion, useScroll, useTransform, Variants } from "framer-motion"
+import {
+    motion, useScroll, useTransform, Variants
+} from "framer-motion"
 import { useRef } from "react"
-
-// --- Data Configuration ---
 
 const values = [
     {
@@ -138,18 +140,11 @@ export default function AboutPage() {
 
     return (
         <SmoothScroll>
-            {/* Main container: Light Mode (white/neutral-50) | Dark Mode (neutral-950) */}
             <main ref={containerRef} className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 selection:bg-neutral-200 dark:selection:bg-neutral-800 selection:text-black dark:selection:text-white transition-colors duration-300">
-
-                {/* GLOBAL GRID BACKGROUND - ADAPTIVE */}
                 <div className="fixed inset-0 z-0 pointer-events-none">
-                    {/* Light Mode Grid (Gray lines) | Dark Mode Grid (Dark Gray lines) */}
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 dark:opacity-20" />
                 </div>
-
-                {/* --- HERO SECTION --- */}
                 <section className="relative h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
-                    {/* Subtle Glow Orb - Adaptive */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neutral-200/50 dark:bg-neutral-800/30 rounded-full blur-[120px] pointer-events-none" />
 
                     <div className="relative z-10 max-w-5xl mx-auto text-center">
@@ -162,7 +157,6 @@ export default function AboutPage() {
                             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                             <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400 tracking-wider">SYSTEM STATUS: ONLINE</span>
                         </motion.div>
-
                         <motion.h1
                             initial="hidden"
                             animate="visible"
@@ -172,7 +166,6 @@ export default function AboutPage() {
                             <motion.span variants={fadeInUp} className="block text-neutral-400 dark:text-neutral-500">ENGINEERING</motion.span>
                             <motion.span variants={fadeInUp} className="block text-neutral-900 dark:text-white">THE FUTURE</motion.span>
                         </motion.h1>
-
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -183,7 +176,6 @@ export default function AboutPage() {
                             high-performance engineering to build systems that matter.
                         </motion.p>
                     </div>
-
                     <motion.div
                         style={{ y }}
                         className="absolute bottom-10 left-0 w-full flex justify-center text-neutral-400 dark:text-neutral-600"
@@ -194,8 +186,6 @@ export default function AboutPage() {
                         </div>
                     </motion.div>
                 </section>
-
-                {/* --- STORY & METRICS --- */}
                 <section className="py-24 md:py-32 px-6 relative z-10 border-t border-neutral-200 dark:border-neutral-900 bg-white/80 dark:bg-neutral-950/50 backdrop-blur-sm">
                     <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
                         <motion.div
@@ -230,7 +220,6 @@ export default function AboutPage() {
                                 </div>
                             </div>
                         </motion.div>
-
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
@@ -239,7 +228,6 @@ export default function AboutPage() {
                             className="relative aspect-square md:aspect-video lg:aspect-square bg-neutral-100 dark:bg-neutral-900 rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 group shadow-2xl shadow-neutral-200/50 dark:shadow-black/50"
                         >
                             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-80 dark:opacity-40 group-hover:scale-105 transition-transform duration-700" />
-                            {/* Gradient overlay specifically for text readability */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
                             <div className="absolute bottom-8 left-8 right-8 text-white">
@@ -256,44 +244,41 @@ export default function AboutPage() {
                         </motion.div>
                     </div>
                 </section>
-
-                {/* --- VALUES --- */}
                 <section className="py-24 px-6 border-t border-neutral-200 dark:border-neutral-900">
                     <div className="max-w-7xl mx-auto">
                         <div className="mb-16">
                             <h2 className="text-sm font-mono text-neutral-500 uppercase tracking-widest mb-4">Our DNA</h2>
                             <h3 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">The Code We Live By</h3>
                         </div>
-
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {values.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="group p-8 rounded-3xl bg-neutral-50 dark:bg-neutral-900/30 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 hover:bg-white dark:hover:bg-neutral-900/50 transition-all duration-300 shadow-sm hover:shadow-md"
-                                >
-                                    <div className="flex justify-between items-start mb-8">
-                                        <div className="p-3 rounded-2xl bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 group-hover:text-black dark:group-hover:text-white transition-colors">
-                                            {item.icon}
+                            {
+                                values.map((item, index) => (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: index * 0.1 }}
+                                        className="group p-8 rounded-3xl bg-neutral-50 dark:bg-neutral-900/30 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 hover:bg-white dark:hover:bg-neutral-900/50 transition-all duration-300 shadow-sm hover:shadow-md"
+                                    >
+                                        <div className="flex justify-between items-start mb-8">
+                                            <div className="p-3 rounded-2xl bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 group-hover:text-black dark:group-hover:text-white transition-colors">
+                                                {item.icon}
+                                            </div>
+                                            <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-500 transition-colors">
+                                                {item.header}
+                                            </span>
                                         </div>
-                                        <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-500 transition-colors">
-                                            {item.header}
-                                        </span>
-                                    </div>
-                                    <h4 className="text-xl font-bold mb-3 text-neutral-900 dark:text-white">{item.title}</h4>
-                                    <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed font-light">
-                                        {item.description}
-                                    </p>
-                                </motion.div>
-                            ))}
+                                        <h4 className="text-xl font-bold mb-3 text-neutral-900 dark:text-white">{item.title}</h4>
+                                        <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed font-light">
+                                            {item.description}
+                                        </p>
+                                    </motion.div>
+                                ))
+                            }
                         </div>
                     </div>
                 </section>
-
-                {/* --- TEAM SECTION (REVAMPED) --- */}
                 <section id="team" className="py-24 px-6 border-t border-neutral-200 dark:border-neutral-900 bg-neutral-50 dark:bg-neutral-950">
                     <div className="max-w-7xl mx-auto">
                         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
@@ -307,71 +292,62 @@ export default function AboutPage() {
                                 Join the Collective
                             </button>
                         </div>
-
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {teamMembers.map((member, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, scale: 0.95 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className={`group relative overflow-hidden rounded-3xl bg-neutral-200 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 ${member.colSpan || ''} min-h-[400px]`}
-                                >
-                                    {/* Image Background */}
-                                    <div className="absolute inset-0">
-                                        <Image
-                                            src={member.image}
-                                            alt={member.name}
-                                            fill
-                                            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out group-hover:scale-105"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                                    </div>
-
-                                    {/* Content Overlay - Always Light Text because background is dark image */}
-                                    <div className="absolute inset-0 p-8 flex flex-col justify-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                        <div className="relative z-10">
-                                            <div className="inline-block mb-3 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
-                                                <span className="text-[10px] font-mono uppercase tracking-wider text-white">
-                                                    {member.role}
-                                                </span>
-                                            </div>
-
-                                            <h3 className="text-3xl font-bold text-white mb-2">{member.name}</h3>
-
-                                            <div className="h-0 group-hover:h-auto overflow-hidden opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out">
-                                                <p className="text-neutral-300 text-sm font-light leading-relaxed mb-4">
-                                                    {member.bio}
-                                                </p>
-                                                <div className="flex gap-4">
-                                                    <Link href={member.linkedin} className="text-white hover:text-neutral-400 transition-colors">
-                                                        <Linkedin className="w-5 h-5" />
-                                                    </Link>
-                                                    <button className="text-white hover:text-neutral-400 transition-colors">
-                                                        <Twitter className="w-5 h-5" />
-                                                    </button>
+                            {
+                                teamMembers.map((member, index) => (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                                        className={`group relative overflow-hidden rounded-3xl bg-neutral-200 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 ${member.colSpan || ''} min-h-[400px]`}
+                                    >
+                                        <div className="absolute inset-0">
+                                            <Image
+                                                src={member.image}
+                                                alt={member.name}
+                                                fill
+                                                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out group-hover:scale-105"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                                        </div>
+                                        <div className="absolute inset-0 p-8 flex flex-col justify-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                            <div className="relative z-10">
+                                                <div className="inline-block mb-3 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+                                                    <span className="text-[10px] font-mono uppercase tracking-wider text-white">
+                                                        {member.role}
+                                                    </span>
+                                                </div>
+                                                <h3 className="text-3xl font-bold text-white mb-2">{member.name}</h3>
+                                                <div className="h-0 group-hover:h-auto overflow-hidden opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out">
+                                                    <p className="text-neutral-300 text-sm font-light leading-relaxed mb-4">
+                                                        {member.bio}
+                                                    </p>
+                                                    <div className="flex gap-4">
+                                                        <Link href={member.linkedin} className="text-white hover:text-neutral-400 transition-colors">
+                                                            <Linkedin className="w-5 h-5" />
+                                                        </Link>
+                                                        <button className="text-white hover:text-neutral-400 transition-colors">
+                                                            <Twitter className="w-5 h-5" />
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </motion.div>
-                            ))}
+                                    </motion.div>
+                                ))
+                            }
                         </div>
                     </div>
                 </section>
-
-                {/* --- MILESTONES (TIMELINE) --- */}
                 <section className="py-24 px-6 border-t border-neutral-200 dark:border-neutral-900 bg-white dark:bg-neutral-950">
                     <div className="max-w-5xl mx-auto">
                         <div className="text-center mb-16">
                             <h2 className="text-4xl font-bold text-neutral-900 dark:text-white">Execution Timeline</h2>
                         </div>
-
                         <div className="relative">
-                            {/* Center Line */}
                             <div className="absolute left-[15px] md:left-1/2 top-0 bottom-0 w-px bg-neutral-200 dark:bg-neutral-800" />
-
                             <div className="space-y-12">
                                 {milestones.map((milestone, index) => (
                                     <motion.div
@@ -381,7 +357,6 @@ export default function AboutPage() {
                                         viewport={{ once: true }}
                                         className={`flex flex-col md:flex-row gap-8 md:gap-0 items-start relative ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                                     >
-                                        {/* Content */}
                                         <div className={`pl-12 md:pl-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
                                             <div className="text-4xl font-bold text-neutral-100 dark:text-neutral-800/20 absolute -z-10 select-none transform translate-y-[-10px] md:translate-x-0">
                                                 {milestone.year}
@@ -390,20 +365,16 @@ export default function AboutPage() {
                                             <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">{milestone.title}</h3>
                                             <p className="text-neutral-600 dark:text-neutral-400 text-sm">{milestone.description}</p>
                                         </div>
-
-                                        {/* Dot */}
                                         <div className="absolute left-[11px] md:left-1/2 top-1.5 w-2 h-2 rounded-full bg-neutral-900 dark:bg-neutral-200 -translate-x-1/2 shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
 
-                                        {/* Empty side for layout balance */}
                                         <div className="hidden md:block md:w-1/2" />
                                     </motion.div>
-                                ))}
+                                ))
+                                }
                             </div>
                         </div>
                     </div>
                 </section>
-
-                {/* --- CTA --- */}
                 <section className="py-32 px-6 border-t border-neutral-200 dark:border-neutral-900 bg-neutral-50 dark:bg-neutral-950">
                     <div className="max-w-4xl mx-auto text-center">
                         <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 text-neutral-900 dark:text-white">
@@ -422,7 +393,6 @@ export default function AboutPage() {
                         </div>
                     </div>
                 </section>
-
             </main>
         </SmoothScroll>
     )
