@@ -12,11 +12,11 @@ import SmoothScroll from "@/components/smoothscroll"
 const projectData = [
     {
         id: 1,
-        slug: "the-coderz", // Updated for routing
+        slug: "the-coderz",
         title: "The Coder'z",
         description: "Comprehensive education platform for CS students featuring live coding environments.",
         image: "/thecoderz.png",
-        link: "https://thecoderz.in.net",
+        link: "https://thecoderai.xyz",
         industry: "Education",
         technologies: ["Next.js", "MongoDB", "Node.js"]
     },
@@ -40,36 +40,36 @@ const projectData = [
         industry: "Healthcare",
         technologies: ["Next.js", "Prisma", "Tailwind"]
     },
-    {
-        id: 4,
-        slug: "ecotrack",
-        title: "EcoTrack",
-        description: "Enterprise sustainability reporting and carbon footprint analytics.",
-        image: "/ecotrack.png",
-        link: "#",
-        industry: "Environmental",
-        technologies: ["Python", "Django", "Vue.js"]
-    },
-    {
-        id: 5,
-        slug: "fintech-pro",
-        title: "FinTech Pro",
-        description: "High-frequency trading interface and asset management dashboard.",
-        image: "/fintech.png",
-        link: "#",
-        industry: "Finance",
-        technologies: ["Redis", "Node.js", "React"]
-    },
-    {
-        id: 6,
-        slug: "smartretail",
-        title: "SmartRetail",
-        description: "Computer vision powered inventory tracking for physical retail.",
-        image: "/retail.png",
-        link: "#",
-        industry: "Retail",
-        technologies: ["TensorFlow", "Python", "React"]
-    }
+    // {
+    //     id: 4,
+    //     slug: "ecotrack",
+    //     title: "EcoTrack",
+    //     description: "Enterprise sustainability reporting and carbon footprint analytics.",
+    //     image: "/ecotrack.png",
+    //     link: "#",
+    //     industry: "Environmental",
+    //     technologies: ["Python", "Django", "Vue.js"]
+    // },
+    // {
+    //     id: 5,
+    //     slug: "fintech-pro",
+    //     title: "FinTech Pro",
+    //     description: "High-frequency trading interface and asset management dashboard.",
+    //     image: "/fintech.png",
+    //     link: "#",
+    //     industry: "Finance",
+    //     technologies: ["Redis", "Node.js", "React"]
+    // },
+    // {
+    //     id: 6,
+    //     slug: "smartretail",
+    //     title: "SmartRetail",
+    //     description: "Computer vision powered inventory tracking for physical retail.",
+    //     image: "/retail.png",
+    //     link: "#",
+    //     industry: "Retail",
+    //     technologies: ["TensorFlow", "Python", "React"]
+    // }
 ];
 
 const industries = Array.from(new Set(projectData.map(project => project.industry)));

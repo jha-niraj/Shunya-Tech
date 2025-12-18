@@ -99,7 +99,7 @@ export const Navbar = () => {
                         <div className="hidden lg:flex items-center gap-3">
                             <ThemeToggle />
                             <div className="h-8 w-[1px] bg-neutral-200 dark:bg-neutral-800 mx-1" />
-                            <Link href="/contactusus">
+                            <Link href="/contactus">
                                 <button className="cursor-pointer flex items-center gap-2 px-5 py-2.5 rounded-full border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all text-sm font-medium">
                                     <Mail className="w-4 h-4" />
                                     <span>Contact</span>

@@ -10,6 +10,7 @@ import {
     motion, useScroll, useTransform, Variants
 } from "framer-motion"
 import { useRef } from "react"
+import { toast } from "sonner"
 
 const values = [
     {
@@ -288,7 +289,10 @@ export default function AboutPage() {
                                     Meet the minds behind the machines. A collective of founders, engineers, and creators.
                                 </p>
                             </div>
-                            <button className="px-6 py-3 rounded-full border border-neutral-300 dark:border-neutral-800 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-300 text-sm font-medium text-neutral-900 dark:text-white">
+                            <button
+                                onClick={() => toast.success("Career Page coming soon!!!")}
+                                className="px-6 py-3 rounded-full border border-neutral-300 dark:border-neutral-800 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-300 text-sm font-medium text-neutral-900 dark:text-white"
+                            >
                                 Join the Collective
                             </button>
                         </div>
@@ -325,10 +329,10 @@ export default function AboutPage() {
                                                         {member.bio}
                                                     </p>
                                                     <div className="flex gap-4">
-                                                        <Link href={member.linkedin} className="text-white hover:text-neutral-400 transition-colors">
+                                                        <Link href={member.linkedin} className="cursor-pointer text-white hover:text-neutral-400 transition-colors">
                                                             <Linkedin className="w-5 h-5" />
                                                         </Link>
-                                                        <button className="text-white hover:text-neutral-400 transition-colors">
+                                                        <button className="cursor-pointer text-white hover:text-neutral-400 transition-colors">
                                                             <Twitter className="w-5 h-5" />
                                                         </button>
                                                     </div>
@@ -349,7 +353,8 @@ export default function AboutPage() {
                         <div className="relative">
                             <div className="absolute left-[15px] md:left-1/2 top-0 bottom-0 w-px bg-neutral-200 dark:bg-neutral-800" />
                             <div className="space-y-12">
-                                {milestones.map((milestone, index) => (
+                                {
+                                milestones.map((milestone, index) => (
                                     <motion.div
                                         key={index}
                                         initial={{ opacity: 0, y: 20 }}
@@ -384,12 +389,12 @@ export default function AboutPage() {
                             We are looking for partners, not just clients. If you want to build the future, let's talk.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <button className="px-8 py-4 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-black font-bold hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all text-lg shadow-lg hover:shadow-xl">
+                            <Link href="/contactus" className="cursor-pointer px-8 py-4 rounded-2xl bg-neutral-900 dark:bg-white text-white dark:text-black font-bold hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all text-lg shadow-lg hover:shadow-xl">
                                 Start a Project
-                            </button>
-                            <button className="px-8 py-4 rounded-full border border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white font-medium hover:bg-neutral-200 dark:hover:bg-neutral-900 transition-all text-lg">
+                            </Link>
+                            <Link href="/projects" className="cursor-pointer px-8 py-4 rounded-2xl border border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white font-medium hover:bg-neutral-200 dark:hover:bg-neutral-900 transition-all text-lg">
                                 View Case Studies
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </section>

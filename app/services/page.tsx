@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import {
-    Smartphone, Globe, Cloud, Bot, ArrowRight, Check, Server, Shield, Database, Layout
+    Smartphone, Globe, Cloud, Bot, ArrowRight, Check, Shield, Layout
 } from "lucide-react"
 import {
     Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescription
@@ -26,7 +26,7 @@ const services = [
     {
         id: "mobile-app",
         title: "Mobile Ecology",
-        image: "/services/webdevelopment.png",
+        image: "/services/mobileapp.png",
         icon: Smartphone,
         description: "Native-feel cross-platform applications using React Native and Flutter.",
         details: "Reach users on both iOS and Android with a single codebase without compromising on performance or native capabilities. We handle the entire lifecycle from code to App Store submission.",
@@ -36,7 +36,7 @@ const services = [
     {
         id: "ai-systems",
         title: "AI Integration",
-        image: "/services/webdevelopment.png",
+        image: "/services/aisystems.png",
         icon: Bot,
         description: "Custom LLM agents, RAG pipelines, and intelligent automation workflows.",
         details: "Leverage the power of OpenAI, Anthropic, or open-source LLaMA models to automate customer support, data analysis, and content generation within your own secure infrastructure.",
@@ -46,7 +46,7 @@ const services = [
     {
         id: "cloud-infra",
         title: "Cloud Architecture",
-        image: "/services/webdevelopment.png",
+        image: "/services/cloudinfra.png",
         icon: Cloud,
         description: "Scalable backend systems on AWS, Azure, or Google Cloud.",
         details: "We design serverless functions, container orchestration (Docker/K8s), and database optimization strategies to ensure your application can handle high-traffic loads with zero downtime.",
@@ -56,7 +56,7 @@ const services = [
     {
         id: "ui-ux",
         title: "UI/UX Systems",
-        image: "/services/webdevelopment.png",
+        image: "/services/uiux.png",
         icon: Layout,
         description: "Atomic design systems and high-fidelity interactive prototyping.",
         details: "We don't just design screens; we build comprehensive design systems. We focus on usability, accessibility, and creating a delightful user journey that converts visitors into customers.",
@@ -66,7 +66,7 @@ const services = [
     {
         id: "security",
         title: "System Security",
-        image: "/services/webdevelopment.png",
+        image: "/services/cybersecurity.png",
         icon: Shield,
         description: "Penetration testing, OAuth implementation, and data encryption.",
         details: "Security is not an afterthought. We implement industry-standard security protocols to protect your user data and ensure compliance with regulations like GDPR and CCPA.",
@@ -118,10 +118,10 @@ export default function ServicesPage() {
                                                         <service.icon className="w-6 h-6" />
                                                     </div>
 
-                                                    <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2">{service.title}</h3>
+                                                    <h3 className="text-2xl font-bold text-white mb-2">{service.title}</h3>
 
                                                     <div className="h-0 group-hover:h-auto overflow-hidden opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out">
-                                                        <p className="text-neutral-600 dark:text-neutral-400 text-sm font-light leading-relaxed mb-6">
+                                                        <p className="text-neutral-800 dark:text-neutral-200 text-sm font-light leading-relaxed mb-6">
                                                             {service.description}
                                                         </p>
                                                         <div className="flex items-center gap-2 text-sm font-bold text-neutral-900 dark:text-white">
@@ -177,15 +177,14 @@ export default function ServicesPage() {
                                                     <span className="text-2xl font-bold text-neutral-900 dark:text-white">{service.priceStart}</span>
                                                 </div>
                                                 <p className="text-xs text-neutral-400 mb-6">Final pricing depends on scope, complexity, and timeline.</p>
-
                                                 <div className="grid gap-3">
                                                     <Link href="/pricing" className="w-full">
-                                                        <button className="w-full py-3 bg-neutral-900 dark:bg-white text-white dark:text-black rounded-xl font-bold hover:opacity-90 transition-opacity">
+                                                        <button className="cursor-pointer w-full py-3 bg-neutral-900 dark:bg-white text-white dark:text-black rounded-xl font-bold hover:opacity-90 transition-opacity">
                                                             View Pricing Model
                                                         </button>
                                                     </Link>
                                                     <Link href="/contactus" className="w-full">
-                                                        <button className="w-full py-3 bg-transparent border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white rounded-xl font-bold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+                                                        <button className="cursor-pointer w-full py-3 bg-transparent border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white rounded-xl font-bold hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
                                                             Request Proposal
                                                         </button>
                                                     </Link>

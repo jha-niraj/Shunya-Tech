@@ -27,8 +27,7 @@ const getProjectData = async (slug: string) => {
                 "Community Forum with Code Snippet Support",
                 "Gamified Progress Tracking"
             ],
-            link: "https://thecoderz.in.net",
-            repo: "#"
+            link: "https://thecoderz.in.net"
         },
         {
             id: 2,
@@ -48,8 +47,7 @@ const getProjectData = async (slug: string) => {
                 "Predictive Route Optimization",
                 "Multi-carrier Integration"
             ],
-            link: "https://logistics-website-atju.onrender.com/",
-            repo: "#"
+            link: "https://logistics-website-atju.onrender.com/"
         },
         {
             id: 3,
@@ -69,8 +67,7 @@ const getProjectData = async (slug: string) => {
                 "Supplier Dashboard",
                 "Analytics for Demand Forecasting"
             ],
-            link: "https://mpsolutions.vercel.app/",
-            repo: "#"
+            link: "https://mpsolutions.vercel.app/"
         },
         {
             id: 4,
@@ -90,8 +87,7 @@ const getProjectData = async (slug: string) => {
                 "Compliance Reporting Generator",
                 "Supply Chain Analysis"
             ],
-            link: "#",
-            repo: "#"
+            link: "#"
         },
         {
             id: 5,
@@ -111,8 +107,7 @@ const getProjectData = async (slug: string) => {
                 "Algorithmic Trading Bot Support",
                 "Risk Management Dashboard"
             ],
-            link: "#",
-            repo: "#"
+            link: "#"
         },
         {
             id: 6,
@@ -132,8 +127,7 @@ const getProjectData = async (slug: string) => {
                 "Automated Restock Alerts",
                 "Shrinkage Detection"
             ],
-            link: "#",
-            repo: "#"
+            link: "#"
         }
     ];
 
@@ -153,11 +147,9 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
     return (
         <SmoothScroll>
             <main className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 pt-28 pb-16">
-
                 <div className="fixed inset-0 z-0 pointer-events-none opacity-20 dark:opacity-10">
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
                 </div>
-
                 <div className="relative z-10 max-w-5xl mx-auto px-6">
                     <div className="flex justify-between items-center mb-4">
                         <Link href="/projects" className="group flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer">
@@ -243,9 +235,6 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
                                     <div className="space-y-3">
                                         <Link href={project.link} target="_blank" className="flex items-center justify-center gap-2 w-full py-3 bg-neutral-900 dark:bg-white text-white dark:text-black rounded-xl font-bold hover:opacity-90 transition-opacity cursor-pointer">
                                             Live Deployment <ExternalLink className="w-4 h-4" />
-                                        </Link>
-                                        <Link href={project.repo} className="flex items-center justify-center gap-2 w-full py-3 border border-neutral-200 dark:border-neutral-800 rounded-xl font-medium hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors cursor-pointer">
-                                            Source Code <Github className="w-4 h-4" />
                                         </Link>
                                     </div>
                                 </div>
