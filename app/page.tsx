@@ -5,8 +5,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
 import {
-	ArrowRight, Globe, Smartphone, Database, Shield, Rocket, Code2, Terminal, 
-	Cpu, Quote, Zap, Layout, Server, GitBranch, Search, Sparkles, Clock, Users, 
+	ArrowRight, Globe, Smartphone, Database, Shield, Rocket, Code2, Terminal,
+	Cpu, Quote, Zap, Layout, Server, GitBranch, Search, Sparkles, Clock, Users,
 	CheckCircle, Orbit, Lightbulb, Settings, Clapperboard
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
@@ -223,24 +223,24 @@ export default function LandingPage() {
 						</div>
 						<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 							{
-							whyUs.map((item, index) => (
-								<motion.div
-									key={index}
-									initial={{ opacity: 0, y: 20 }}
-									whileInView={{ opacity: 1, y: 0 }}
-									transition={{ delay: index * 0.1 }}
-									viewport={{ once: true }}
-									className="group p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-300 hover:shadow-xl dark:hover:shadow-none"
-								>
-									<div className="w-12 h-12 rounded-xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center mb-6 text-neutral-900 dark:text-white group-hover:scale-110 transition-transform duration-300">
-										<item.icon className="w-6 h-6" />
-									</div>
-									<h3 className="text-xl font-bold mb-3 text-neutral-900 dark:text-white">{item.title}</h3>
-									<p className="text-neutral-500 text-sm leading-relaxed font-light">
-										{item.description}
-									</p>
-								</motion.div>
-							))
+								whyUs.map((item, index) => (
+									<motion.div
+										key={index}
+										initial={{ opacity: 0, y: 20 }}
+										whileInView={{ opacity: 1, y: 0 }}
+										transition={{ delay: index * 0.1 }}
+										viewport={{ once: true }}
+										className="group p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-300 hover:shadow-xl dark:hover:shadow-none"
+									>
+										<div className="w-12 h-12 rounded-xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center mb-6 text-neutral-900 dark:text-white group-hover:scale-110 transition-transform duration-300">
+											<item.icon className="w-6 h-6" />
+										</div>
+										<h3 className="text-xl font-bold mb-3 text-neutral-900 dark:text-white">{item.title}</h3>
+										<p className="text-neutral-500 text-sm leading-relaxed font-light">
+											{item.description}
+										</p>
+									</motion.div>
+								))
 							}
 						</div>
 					</div>
@@ -275,19 +275,19 @@ export default function LandingPage() {
 							</p>
 							<ul className="space-y-4 mb-10">
 								{
-								[
-									'Real-time Kanban with Git Integration',
-									'Automated Sprint Reporting',
-									'Client "View-Only" Portals',
-									'CI/CD Pipeline Visualization'
-								].map((feat, i) => (
-									<li key={i} className="flex items-center gap-4 text-neutral-300 group">
-										<div className="w-6 h-6 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center group-hover:border-blue-500/50 transition-colors">
-											<CheckCircle className="w-3 h-3 text-blue-500" />
-										</div>
-										<span className="font-light">{feat}</span>
-									</li>
-								))
+									[
+										'Real-time Kanban with Git Integration',
+										'Automated Sprint Reporting',
+										'Client "View-Only" Portals',
+										'CI/CD Pipeline Visualization'
+									].map((feat, i) => (
+										<li key={i} className="flex items-center gap-4 text-neutral-300 group">
+											<div className="w-6 h-6 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center group-hover:border-blue-500/50 transition-colors">
+												<CheckCircle className="w-3 h-3 text-blue-500" />
+											</div>
+											<span className="font-light">{feat}</span>
+										</li>
+									))
 								}
 							</ul>
 							<div className="flex flex-wrap gap-4">
@@ -428,24 +428,24 @@ export default function LandingPage() {
 						</div>
 						<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 							{
-							services.map((service, i) => (
-								<motion.div
-									key={i}
-									initial={{ opacity: 0, y: 20 }}
-									whileInView={{ opacity: 1, y: 0 }}
-									transition={{ delay: i * 0.05 }}
-									viewport={{ once: true }}
-									className="group p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-300"
-								>
-									<div className="w-10 h-10 rounded-lg bg-white dark:bg-neutral-800 flex items-center justify-center mb-4 text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-										<service.icon className="w-5 h-5" />
-									</div>
-									<h4 className="text-lg font-bold mb-2">{service.title}</h4>
-									<p className="text-xs text-neutral-500 leading-relaxed">
-										{service.desc}
-									</p>
-								</motion.div>
-							))
+								services.map((service, i) => (
+									<motion.div
+										key={i}
+										initial={{ opacity: 0, y: 20 }}
+										whileInView={{ opacity: 1, y: 0 }}
+										transition={{ delay: i * 0.05 }}
+										viewport={{ once: true }}
+										className="group p-6 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all duration-300"
+									>
+										<div className="w-10 h-10 rounded-lg bg-white dark:bg-neutral-800 flex items-center justify-center mb-4 text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+											<service.icon className="w-5 h-5" />
+										</div>
+										<h4 className="text-lg font-bold mb-2">{service.title}</h4>
+										<p className="text-xs text-neutral-500 leading-relaxed">
+											{service.desc}
+										</p>
+									</motion.div>
+								))
 							}
 						</div>
 					</div>
@@ -467,26 +467,26 @@ export default function LandingPage() {
 						</div>
 						<div className="grid md:grid-cols-3 gap-8">
 							{
-							selectedProjects.map((project, i) => (
-								<Link href="/projects" key={i} className="group block">
-									<div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-6">
-										<Image
-											src={project.image}
-											alt={project.title}
-											fill
-											className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
-										/>
-										<div className="absolute top-4 left-4 px-3 py-1 bg-white/90 dark:bg-black/90 backdrop-blur rounded text-xs font-mono uppercase tracking-wider border border-neutral-200 dark:border-neutral-800">
-											{project.category}
+								selectedProjects.map((project, i) => (
+									<Link href="/projects" key={i} className="group block">
+										<div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 mb-6">
+											<Image
+												src={project.image}
+												alt={project.title}
+												fill
+												className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+											/>
+											<div className="absolute top-4 left-4 px-3 py-1 bg-white/90 dark:bg-black/90 backdrop-blur rounded text-xs font-mono uppercase tracking-wider border border-neutral-200 dark:border-neutral-800">
+												{project.category}
+											</div>
 										</div>
-									</div>
-									<h3 className="text-2xl font-bold mb-2 flex items-center gap-2">
-										{project.title}
-										<ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-									</h3>
-									<p className="text-neutral-500 text-sm">{project.description}</p>
-								</Link>
-							))
+										<h3 className="text-2xl font-bold mb-2 flex items-center gap-2">
+											{project.title}
+											<ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+										</h3>
+										<p className="text-neutral-500 text-sm">{project.description}</p>
+									</Link>
+								))
 							}
 						</div>
 					</div>
@@ -502,9 +502,9 @@ export default function LandingPage() {
 							transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
 						>
 							{
-							[...testimonials, ...testimonials].map((item, i) => (
-								<MarqueeCard key={i} item={item} />
-							))
+								[...testimonials, ...testimonials].map((item, i) => (
+									<MarqueeCard key={i} item={item} />
+								))
 							}
 						</motion.div>
 					</div>
@@ -515,9 +515,9 @@ export default function LandingPage() {
 							transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
 						>
 							{
-							[...testimonials, ...testimonials].reverse().map((item, i) => (
-								<MarqueeCard key={i} item={item} />
-							))
+								[...testimonials, ...testimonials].reverse().map((item, i) => (
+									<MarqueeCard key={i} item={item} />
+								))
 							}
 						</motion.div>
 					</div>
