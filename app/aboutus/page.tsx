@@ -1,145 +1,123 @@
 "use client"
 
 import SmoothScroll from "@/components/smoothscroll"
-import { Linkedin } from "lucide-react"
+import { ArrowUpRight, Linkedin, Twitter, Code2, Users, Globe, Zap } from "lucide-react"
 import Link from "next/link"
-import { motion } from "framer-motion"
+import Image from "next/image"
+import { motion, useScroll, useTransform, Variants } from "framer-motion"
+import { useRef } from "react"
+
+// --- Data Configuration ---
 
 const values = [
     {
-        icon: "🎯",
-        title: "Innovation",
-        description: "We push boundaries and embrace new technologies to create cutting-edge solutions.",
+        icon: <Zap className="w-6 h-6" />,
+        header: "01_INNOVATION",
+        title: "Technical Velocity",
+        description: "We don't just write code; we engineer velocity. Pushing boundaries with bleeding-edge stacks to solve complex problems.",
     },
     {
-        icon: "🤝",
-        title: "Collaboration",
-        description: "We believe in the power of teamwork and open communication with clients and team members.",
+        icon: <Users className="w-6 h-6" />,
+        header: "02_SYNERGY",
+        title: "Collective Intelligence",
+        description: "A hive-mind approach to development. Open communication loops between engineering, design, and product.",
     },
     {
-        icon: "⚡",
-        title: "Excellence",
-        description: "We never compromise on quality. Every project receives our full attention and expertise.",
+        icon: <Code2 className="w-6 h-6" />,
+        header: "03_PRECISION",
+        title: "Pixel Perfection",
+        description: "Zero compromise on quality. We obsess over the micro-interactions that define the macro experience.",
     },
     {
-        icon: "🚀",
-        title: "Impact",
-        description: "We measure success by the real-world impact our solutions create for our clients.",
-    },
-    {
-        icon: "🔒",
-        title: "Integrity",
-        description: "We operate with transparency and honesty in all our business relationships.",
-    },
-]
-const milestones = [
-    {
-        year: "2019",
-        title: "Founded",
-        description: "Shunya Tech is born with a vision to revolutionize digital solutions",
-    },
-    {
-        year: "2020",
-        title: "First 10 Clients",
-        description: "Rapid growth as we deliver exceptional results for early adopters",
-    },
-    {
-        year: "2021",
-        title: "Product Launch",
-        description: "Released our first internal product, expanding beyond client services",
-    },
-    { year: "2022", title: "50+ Clients", description: "Scaled to serve diverse industries with tailored solutions" },
-    {
-        year: "2023",
-        title: "150+ Projects",
-        description: "Milestone achievement in project delivery and client satisfaction",
-    },
-    { year: "2024", title: "Global Reach", description: "Expanded operations and serving clients worldwide" },
-]
-const teamMembers = [
-    {
-        name: "Niraj Jha",
-        role: "Founder & CEO",
-        bio: "Visionary leader with 8+ years in tech. Passionate about building products that matter.",
-        image: "/professional-man-ceo.jpg",
-        specialty: "Leadership",
-        linkedin: "https://linkedin.com/in/nirajjha",
-    },
-    {
-        name: "Priya Sharma",
-        role: "CTO & Co-Founder",
-        bio: "Full-stack architect specializing in scalable systems. Drives our technical excellence.",
-        image: "/professional-woman-tech.jpg",
-        specialty: "Architecture",
-        linkedin: "https://linkedin.com/in/priyasharma",
-    },
-    {
-        name: "Rahul Verma",
-        role: "Lead Product Designer",
-        bio: "Design-driven innovator creating beautiful, intuitive user experiences.",
-        image: "/professional-man-designer.jpg",
-        specialty: "Design",
-        linkedin: "https://linkedin.com/in/rahulverma",
-    },
-    {
-        name: "Anjali Patel",
-        role: "Head of Engineering",
-        bio: "Experienced engineer leading our development team with precision and creativity.",
-        image: "/professional-woman-engineer.jpg",
-        specialty: "Engineering",
-        linkedin: "https://linkedin.com/in/anjalipatel",
-    },
-    {
-        name: "Vikram Singh",
-        role: "Senior Full-Stack Developer",
-        bio: "Expert in modern web technologies. Builds robust, scalable applications.",
-        image: "/professional-man-developer.jpg",
-        specialty: "Full-Stack",
-        linkedin: "https://linkedin.com/in/vikramsingh",
-    },
-    {
-        name: "Neha Gupta",
-        role: "Product Manager",
-        bio: "Strategic thinker focused on delivering products that solve real user problems.",
-        image: "/professional-woman-product.jpg",
-        specialty: "Product",
-        linkedin: "https://linkedin.com/in/nehagupta",
-    },
-    {
-        name: "Arjun Desai",
-        role: "Frontend Lead",
-        bio: "UI/UX specialist crafting pixel-perfect interfaces with React and modern frameworks.",
-        image: "/professional-man-frontend.jpg",
-        specialty: "Frontend",
-        linkedin: "https://linkedin.com/in/arjundesai",
-    },
-    {
-        name: "Divya Nair",
-        role: "Backend Architect",
-        bio: "Database and infrastructure expert ensuring our systems scale seamlessly.",
-        image: "/professional-woman-backend.jpg",
-        specialty: "Backend",
-        linkedin: "https://linkedin.com/in/divyanair",
-    },
-    {
-        name: "Karan Malhotra",
-        role: "DevOps Engineer",
-        bio: "Cloud infrastructure specialist optimizing deployment and system reliability.",
-        image: "/professional-man-devops.jpg",
-        specialty: "DevOps",
-        linkedin: "https://linkedin.com/in/karanmalhotra",
-    },
-    {
-        name: "Sophia Chen",
-        role: "UX Researcher",
-        bio: "Data-driven researcher uncovering user insights to guide product decisions.",
-        image: "/professional-woman-researcher.jpg",
-        specialty: "Research",
-        linkedin: "https://linkedin.com/in/sophiachen",
+        icon: <Globe className="w-6 h-6" />,
+        header: "04_IMPACT",
+        title: "Global Scale",
+        description: "Architecting systems designed to handle global traffic and deliver real-world impact from day one.",
     },
 ]
 
-const containerVariants = {
+const milestones = [
+    { year: "2019", title: "GENESIS", description: "Shunya Tech founded. The vision was simple: Code is art." },
+    { year: "2020", title: "TRACTION", description: "Secured first 10 major enterprise contracts." },
+    { year: "2021", title: "SCALING", description: "Launched internal product labs. Team grew to 15 engineers." },
+    { year: "2023", title: "DOMINANCE", description: "150+ Projects delivered. Recognized for high-performance web systems." },
+    { year: "2024", title: "GLOBAL", description: "Expanded operations to international markets." },
+]
+
+const teamMembers = [
+    {
+        name: "Kratik Singh",
+        role: "CO-FOUNDER & CEO",
+        bio: "The strategic mind behind Shunya. Orchestrating the vision and steering the agency towards global innovation.",
+        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop",
+        linkedin: "#",
+        colSpan: "md:col-span-2 lg:col-span-2"
+    },
+    {
+        name: "Aman Singh",
+        role: "CO-FOUNDER & DIRECTOR",
+        bio: "Ensuring operational excellence and driving the company's long-term growth strategies.",
+        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1000&auto=format&fit=crop",
+        linkedin: "#",
+        colSpan: "md:col-span-1 lg:col-span-1"
+    },
+    {
+        name: "Niraj Jha",
+        role: "CO-FOUNDER & CTO",
+        bio: "Full-stack architect and technical visionary. Building the engineering culture and setting the tech stack standards.",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop",
+        linkedin: "https://linkedin.com/in/nirajjha",
+        colSpan: "md:col-span-1 lg:col-span-1"
+    },
+    {
+        name: "Harsh Pandey",
+        role: "CHIEF OPERATING OFFICER",
+        bio: "The engine room. Managing workflows, resources, and ensuring delivery timelines are met with precision.",
+        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1000&auto=format&fit=crop",
+        linkedin: "#",
+        colSpan: "md:col-span-2 lg:col-span-2"
+    },
+    {
+        name: "Sarah Jenkin",
+        role: "HEAD OF PRODUCT",
+        bio: "Translating complex user needs into seamless digital experiences.",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop",
+        linkedin: "#",
+        colSpan: "md:col-span-1"
+    },
+    {
+        name: "David Chen",
+        role: "LEAD VIDEO EDITOR",
+        bio: "Crafting visual narratives that tell the story behind the code.",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop",
+        linkedin: "#",
+        colSpan: "md:col-span-1"
+    },
+    {
+        name: "Elena Rodriguez",
+        role: "SENIOR FRONTEND",
+        bio: "Pixel-perfect implementation of complex UI systems.",
+        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1000&auto=format&fit=crop",
+        linkedin: "#",
+        colSpan: "md:col-span-1"
+    }
+]
+
+// --- Animation Variants (Typed to fix TS Error) ---
+
+const fadeInUp: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.8,
+            ease: [0.22, 1, 0.36, 1]
+        }
+    }
+}
+
+const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
@@ -149,279 +127,302 @@ const containerVariants = {
     }
 }
 
-const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5 }
-    }
-}
-
 export default function AboutPage() {
+    const containerRef = useRef(null)
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"]
+    })
+
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
 
     return (
         <SmoothScroll>
-            <main className="min-h-screen bg-background">
-                <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-background/50">
-                    <div className="absolute inset-0 opacity-10">
-                        <svg className="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="none">
-                            <defs>
-                                <pattern id="lines" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
-                                    <line x1="0" y1="0" x2="50" y2="50" stroke="currentColor" strokeWidth="1" />
-                                </pattern>
-                            </defs>
-                            <rect width="1000" height="1000" fill="url(#lines)" />
-                        </svg>
-                    </div>
-                    <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            {/* Main container: Light Mode (white/neutral-50) | Dark Mode (neutral-950) */}
+            <main ref={containerRef} className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 selection:bg-neutral-200 dark:selection:bg-neutral-800 selection:text-black dark:selection:text-white transition-colors duration-300">
+
+                {/* GLOBAL GRID BACKGROUND - ADAPTIVE */}
+                <div className="fixed inset-0 z-0 pointer-events-none">
+                    {/* Light Mode Grid (Gray lines) | Dark Mode Grid (Dark Gray lines) */}
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 dark:opacity-20" />
+                </div>
+
+                {/* --- HERO SECTION --- */}
+                <section className="relative h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
+                    {/* Subtle Glow Orb - Adaptive */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neutral-200/50 dark:bg-neutral-800/30 rounded-full blur-[120px] pointer-events-none" />
+
+                    <div className="relative z-10 max-w-5xl mx-auto text-center">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5 }}
-                            className="inline-block mb-6 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/30 dark:border-teal-400/30"
+                            className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-md shadow-sm"
                         >
-                            <span className="text-teal-600 dark:text-teal-400 text-sm font-medium">About Shunya Tech</span>
+                            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                            <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400 tracking-wider">SYSTEM STATUS: ONLINE</span>
                         </motion.div>
+
                         <motion.h1
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.1 }}
-                            className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight"
+                            initial="hidden"
+                            animate="visible"
+                            variants={staggerContainer}
+                            className="text-6xl md:text-8xl font-bold tracking-tighter mb-8"
                         >
-                            Building the Future,
-                            <br />
-                            <span className="text-teal-600 dark:text-teal-400">One Product at a Time</span>
+                            <motion.span variants={fadeInUp} className="block text-neutral-400 dark:text-neutral-500">ENGINEERING</motion.span>
+                            <motion.span variants={fadeInUp} className="block text-neutral-900 dark:text-white">THE FUTURE</motion.span>
                         </motion.h1>
+
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+                            transition={{ delay: 0.4, duration: 0.8 }}
+                            className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto font-light leading-relaxed"
                         >
-                            We're an agency that doesn't just build for clients—we build products that matter. Combining strategic
-                            thinking with cutting-edge technology to create solutions that drive real impact.
+                            Shunya Tech is a digital product agency. We combine strategic thinking with
+                            high-performance engineering to build systems that matter.
                         </motion.p>
                     </div>
+
+                    <motion.div
+                        style={{ y }}
+                        className="absolute bottom-10 left-0 w-full flex justify-center text-neutral-400 dark:text-neutral-600"
+                    >
+                        <div className="flex flex-col items-center gap-2">
+                            <span className="text-[10px] font-mono uppercase tracking-[0.2em]">Scroll to Explore</span>
+                            <div className="w-[1px] h-12 bg-gradient-to-b from-neutral-400 to-transparent dark:from-neutral-600" />
+                        </div>
+                    </motion.div>
                 </section>
-                <section className="py-20 md:py-32 px-6 bg-background">
-                    <div className="max-w-5xl mx-auto">
-                        <div className="grid md:grid-cols-2 gap-12 items-center">
-                            <motion.div
-                                initial={{ opacity: 0, x: -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                transition={{ duration: 0.6 }}
-                            >
-                                <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Our Story</h2>
-                                <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-                                    Shunya Tech was founded with a simple belief: great technology should solve real problems. What started as
-                                    a small team of passionate developers has grown into a full-service agency delivering world-class
-                                    solutions to clients across industries.
+
+                {/* --- STORY & METRICS --- */}
+                <section className="py-24 md:py-32 px-6 relative z-10 border-t border-neutral-200 dark:border-neutral-900 bg-white/80 dark:bg-neutral-950/50 backdrop-blur-sm">
+                    <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={fadeInUp}
+                        >
+                            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-8 text-neutral-900 dark:text-white">
+                                Built on <span className="text-neutral-400 dark:text-neutral-500">First Principles</span>.
+                            </h2>
+                            <div className="space-y-6 text-lg text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">
+                                <p>
+                                    At Shunya Tech, we reject the noise. We believe that great technology is silent—it works so well
+                                    you don't notice the complexity behind it.
                                 </p>
-                                <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-                                    But we didn't stop at client work. We built our own products—platforms that reflect our commitment to
-                                    innovation and excellence. Today, we balance both: delivering exceptional client solutions while nurturing
-                                    our own product ecosystem.
+                                <p>
+                                    What started as a small collective of obsessive developers has evolved into a powerhouse
+                                    engineering firm. We don't just "build websites"; we architect digital ecosystems that
+                                    scale, perform, and endure.
                                 </p>
-                                <p className="text-muted-foreground text-lg leading-relaxed">
-                                    Our journey is defined by curiosity, collaboration, and a relentless pursuit of quality. Every project,
-                                    every product, every line of code represents our commitment to excellence.
-                                </p>
-                            </motion.div>
-                            <motion.div
-                                initial={{ opacity: 0, x: 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                transition={{ duration: 0.6 }}
-                                className="relative h-96 bg-gradient-to-br from-teal-500/10 to-blue-500/10 dark:from-teal-500/20 dark:to-blue-500/20 rounded-xl border border-teal-500/20 dark:border-teal-500/30 flex items-center justify-center shadow-lg dark:shadow-teal-500/10"
-                            >
-                                <div className="text-center">
-                                    <div className="text-6xl font-bold text-teal-600 dark:text-teal-400 mb-2">5+</div>
-                                    <p className="text-muted-foreground font-medium">Years of Excellence</p>
+                                <div className="pt-8 flex gap-8 border-t border-neutral-200 dark:border-neutral-800 mt-8">
+                                    <div>
+                                        <h3 className="text-4xl font-bold text-neutral-900 dark:text-white mb-1">50+</h3>
+                                        <p className="text-xs font-mono text-neutral-500 uppercase">Enterprise Clients</p>
+                                    </div>
+                                    <div className="w-[1px] h-full bg-neutral-200 dark:bg-neutral-800" />
+                                    <div>
+                                        <h3 className="text-4xl font-bold text-neutral-900 dark:text-white mb-1">99%</h3>
+                                        <p className="text-xs font-mono text-neutral-500 uppercase">Retention Rate</p>
+                                    </div>
                                 </div>
-                            </motion.div>
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="relative aspect-square md:aspect-video lg:aspect-square bg-neutral-100 dark:bg-neutral-900 rounded-3xl overflow-hidden border border-neutral-200 dark:border-neutral-800 group shadow-2xl shadow-neutral-200/50 dark:shadow-black/50"
+                        >
+                            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-80 dark:opacity-40 group-hover:scale-105 transition-transform duration-700" />
+                            {/* Gradient overlay specifically for text readability */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                            <div className="absolute bottom-8 left-8 right-8 text-white">
+                                <div className="flex justify-between items-end">
+                                    <div>
+                                        <p className="text-xs font-mono text-neutral-300 mb-2">CURRENT MISSION</p>
+                                        <h3 className="text-2xl font-bold">Redefining Digital Landscapes</h3>
+                                    </div>
+                                    <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center bg-black/20 backdrop-blur-md hover:bg-white hover:text-black transition-all">
+                                        <ArrowUpRight className="w-5 h-5" />
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+
+                {/* --- VALUES --- */}
+                <section className="py-24 px-6 border-t border-neutral-200 dark:border-neutral-900">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="mb-16">
+                            <h2 className="text-sm font-mono text-neutral-500 uppercase tracking-widest mb-4">Our DNA</h2>
+                            <h3 className="text-4xl md:text-5xl font-bold text-neutral-900 dark:text-white">The Code We Live By</h3>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {values.map((item, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                    className="group p-8 rounded-3xl bg-neutral-50 dark:bg-neutral-900/30 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 hover:bg-white dark:hover:bg-neutral-900/50 transition-all duration-300 shadow-sm hover:shadow-md"
+                                >
+                                    <div className="flex justify-between items-start mb-8">
+                                        <div className="p-3 rounded-2xl bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 group-hover:text-black dark:group-hover:text-white transition-colors">
+                                            {item.icon}
+                                        </div>
+                                        <span className="text-[10px] font-mono text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-500 transition-colors">
+                                            {item.header}
+                                        </span>
+                                    </div>
+                                    <h4 className="text-xl font-bold mb-3 text-neutral-900 dark:text-white">{item.title}</h4>
+                                    <p className="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed font-light">
+                                        {item.description}
+                                    </p>
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
                 </section>
-                <section className="py-20 md:py-32 px-6 bg-background">
-                    <div className="max-w-6xl mx-auto">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                            className="text-center mb-16"
-                        >
-                            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Our Mission & Values</h2>
-                            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                                We're committed to delivering exceptional value through innovation, collaboration, and unwavering
-                                excellence.
-                            </p>
-                        </motion.div>
-                        <motion.div
-                            variants={containerVariants}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.2 }}
-                            className="grid md:grid-cols-2 lg:grid-cols-5 gap-6"
-                        >
-                            {
-                                values.map((value, index) => (
-                                    <motion.div
-                                        key={index}
-                                        variants={itemVariants}
-                                        className="group p-6 rounded-xl bg-card border border-border hover:border-teal-500/50 dark:hover:border-teal-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/10 dark:hover:shadow-teal-400/10"
-                                    >
-                                        <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{value.icon}</div>
-                                        <h3 className="text-xl font-bold text-foreground mb-2">{value.title}</h3>
-                                        <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
-                                    </motion.div>
-                                ))
-                            }
-                        </motion.div>
+
+                {/* --- TEAM SECTION (REVAMPED) --- */}
+                <section id="team" className="py-24 px-6 border-t border-neutral-200 dark:border-neutral-900 bg-neutral-50 dark:bg-neutral-950">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                            <div>
+                                <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-neutral-900 dark:text-white">The Architects</h2>
+                                <p className="text-neutral-600 dark:text-neutral-400 text-lg max-w-xl">
+                                    Meet the minds behind the machines. A collective of founders, engineers, and creators.
+                                </p>
+                            </div>
+                            <button className="px-6 py-3 rounded-full border border-neutral-300 dark:border-neutral-800 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-300 text-sm font-medium text-neutral-900 dark:text-white">
+                                Join the Collective
+                            </button>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {teamMembers.map((member, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    className={`group relative overflow-hidden rounded-3xl bg-neutral-200 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 ${member.colSpan || ''} min-h-[400px]`}
+                                >
+                                    {/* Image Background */}
+                                    <div className="absolute inset-0">
+                                        <Image
+                                            src={member.image}
+                                            alt={member.name}
+                                            fill
+                                            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out group-hover:scale-105"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                                    </div>
+
+                                    {/* Content Overlay - Always Light Text because background is dark image */}
+                                    <div className="absolute inset-0 p-8 flex flex-col justify-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                        <div className="relative z-10">
+                                            <div className="inline-block mb-3 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+                                                <span className="text-[10px] font-mono uppercase tracking-wider text-white">
+                                                    {member.role}
+                                                </span>
+                                            </div>
+
+                                            <h3 className="text-3xl font-bold text-white mb-2">{member.name}</h3>
+
+                                            <div className="h-0 group-hover:h-auto overflow-hidden opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out">
+                                                <p className="text-neutral-300 text-sm font-light leading-relaxed mb-4">
+                                                    {member.bio}
+                                                </p>
+                                                <div className="flex gap-4">
+                                                    <Link href={member.linkedin} className="text-white hover:text-neutral-400 transition-colors">
+                                                        <Linkedin className="w-5 h-5" />
+                                                    </Link>
+                                                    <button className="text-white hover:text-neutral-400 transition-colors">
+                                                        <Twitter className="w-5 h-5" />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
                 </section>
-                <section className="py-20 md:py-32 px-6 bg-background">
+
+                {/* --- MILESTONES (TIMELINE) --- */}
+                <section className="py-24 px-6 border-t border-neutral-200 dark:border-neutral-900 bg-white dark:bg-neutral-950">
                     <div className="max-w-5xl mx-auto">
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                            className="text-4xl md:text-5xl font-bold text-foreground mb-16 text-center"
-                        >
-                            Our Journey
-                        </motion.h2>
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-bold text-neutral-900 dark:text-white">Execution Timeline</h2>
+                        </div>
 
                         <div className="relative">
-                            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-teal-600 dark:from-teal-400 to-blue-600 dark:to-blue-400 hidden md:block" />
+                            {/* Center Line */}
+                            <div className="absolute left-[15px] md:left-1/2 top-0 bottom-0 w-px bg-neutral-200 dark:bg-neutral-800" />
+
                             <div className="space-y-12">
-                                {
-                                    milestones.map((milestone, index) => (
-                                        <motion.div
-                                            key={index}
-                                            initial={{ opacity: 0, y: 30 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            viewport={{ once: true, amount: 0.3 }}
-                                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                                            className={`flex gap-8 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
-                                        >
-                                            <div className="flex-1 md:text-right">
-                                                <div className="text-teal-600 dark:text-teal-400 font-bold text-lg mb-2">{milestone.year}</div>
-                                                <h3 className="text-2xl font-bold text-foreground mb-2">{milestone.title}</h3>
-                                                <p className="text-muted-foreground">{milestone.description}</p>
+                                {milestones.map((milestone, index) => (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        className={`flex flex-col md:flex-row gap-8 md:gap-0 items-start relative ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                                    >
+                                        {/* Content */}
+                                        <div className={`pl-12 md:pl-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
+                                            <div className="text-4xl font-bold text-neutral-100 dark:text-neutral-800/20 absolute -z-10 select-none transform translate-y-[-10px] md:translate-x-0">
+                                                {milestone.year}
                                             </div>
-                                            <div className="hidden md:flex justify-center">
-                                                <div className="w-4 h-4 rounded-full bg-teal-600 dark:bg-teal-400 border-4 border-background" />
-                                            </div>
-                                            <div className="flex-1" />
-                                        </motion.div>
-                                    ))
-                                }
+                                            <span className="text-xs font-mono text-neutral-500 mb-2 block">{milestone.year}</span>
+                                            <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">{milestone.title}</h3>
+                                            <p className="text-neutral-600 dark:text-neutral-400 text-sm">{milestone.description}</p>
+                                        </div>
+
+                                        {/* Dot */}
+                                        <div className="absolute left-[11px] md:left-1/2 top-1.5 w-2 h-2 rounded-full bg-neutral-900 dark:bg-neutral-200 -translate-x-1/2 shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
+
+                                        {/* Empty side for layout balance */}
+                                        <div className="hidden md:block md:w-1/2" />
+                                    </motion.div>
+                                ))}
                             </div>
                         </div>
                     </div>
                 </section>
-                <section id="team" className="py-20 md:py-32 px-6 bg-background">
-                    <div className="max-w-6xl mx-auto">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                            className="text-center mb-16"
-                        >
-                            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Meet Our Team</h2>
-                            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                                Talented individuals united by a passion for excellence and innovation.
-                            </p>
-                        </motion.div>
-                        <motion.div
-                            variants={containerVariants}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.1 }}
-                            className="grid md:grid-cols-2 lg:grid-cols-5 gap-6"
-                        >
-                            {
-                                teamMembers.map((member, index) => (
-                                    <motion.div
-                                        key={index}
-                                        variants={itemVariants}
-                                        className="group rounded-xl overflow-hidden bg-card border border-border hover:border-teal-500/50 dark:hover:border-teal-400/50 transition-all duration-300 hover:shadow-xl hover:shadow-teal-500/10 dark:hover:shadow-teal-400/10"
-                                    >
-                                        <div className="relative h-48 overflow-hidden bg-gradient-to-br from-teal-500/10 to-blue-500/10 dark:from-teal-500/20 dark:to-blue-500/20">
-                                            <img
-                                                src={member.image || "/placeholder.svg"}
-                                                alt={member.name}
-                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                        </div>
-                                        <div className="p-5">
-                                            <div className="inline-block mb-3 px-2.5 py-1 rounded-full bg-teal-500/10 dark:bg-teal-500/20 border border-teal-500/30 dark:border-teal-400/30">
-                                                <span className="text-teal-600 dark:text-teal-400 text-xs font-semibold">{member.specialty}</span>
-                                            </div>
 
-                                            <h3 className="text-lg font-bold text-foreground mb-1">{member.name}</h3>
-                                            <p className="text-teal-600 dark:text-teal-400 text-sm font-semibold mb-3">{member.role}</p>
-                                            <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-4">{member.bio}</p>
-
-                                            <Link
-                                                href={member.linkedin}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-black dark:bg-white text-white dark:text-black text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors duration-200 group"
-                                            >
-                                                <Linkedin className="h-4 w-4 group-hover:scale-110 transition-transform duration-200" />
-                                                LinkedIn
-                                            </Link>
-                                        </div>
-                                    </motion.div>
-                                ))
-                            }
-                        </motion.div>
-                    </div>
-                </section>
-                <section className="py-20 md:py-32 px-6 bg-background">
-                    <div className="max-w-5xl mx-auto">
-                        <div className="grid md:grid-cols-2 gap-12 items-center">
-                            <motion.div
-                                initial={{ opacity: 0, x: -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                transition={{ duration: 0.6 }}
-                                className="relative h-96 bg-gradient-to-br from-teal-500/10 to-blue-500/10 dark:from-teal-500/20 dark:to-blue-500/20 rounded-xl border border-teal-500/20 dark:border-teal-500/30 flex items-center justify-center shadow-lg dark:shadow-teal-500/10"
-                            >
-                                <div className="text-center">
-                                    <div className="text-6xl font-bold text-teal-600 dark:text-teal-400 mb-2">24/7</div>
-                                    <p className="text-muted-foreground font-medium">Support Available</p>
-                                </div>
-                            </motion.div>
-                            <motion.div
-                                initial={{ opacity: 0, x: 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                transition={{ duration: 0.6 }}
-                            >
-                                <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Our Culture</h2>
-                                <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-                                    At Shunya Tech, we believe that great work comes from great people working together. Our culture is built
-                                    on trust, transparency, and continuous learning.
-                                </p>
-                                <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-                                    We invest in our team's growth, celebrate wins together, and learn from challenges. Whether you're working
-                                    on a client project or building our next product, you're part of something bigger.
-                                </p>
-                                <p className="text-muted-foreground text-lg leading-relaxed">
-                                    We're not just a company—we're a community of builders, thinkers, and innovators committed to making a
-                                    difference in the digital world.
-                                </p>
-                            </motion.div>
+                {/* --- CTA --- */}
+                <section className="py-32 px-6 border-t border-neutral-200 dark:border-neutral-900 bg-neutral-50 dark:bg-neutral-950">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 text-neutral-900 dark:text-white">
+                            Ready to build<br />the impossible?
+                        </h2>
+                        <p className="text-xl text-neutral-600 dark:text-neutral-400 mb-10 font-light">
+                            We are looking for partners, not just clients. If you want to build the future, let's talk.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button className="px-8 py-4 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-black font-bold hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all text-lg shadow-lg hover:shadow-xl">
+                                Start a Project
+                            </button>
+                            <button className="px-8 py-4 rounded-full border border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white font-medium hover:bg-neutral-200 dark:hover:bg-neutral-900 transition-all text-lg">
+                                View Case Studies
+                            </button>
                         </div>
                     </div>
                 </section>
+
             </main>
         </SmoothScroll>
     )

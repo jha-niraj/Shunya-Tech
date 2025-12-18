@@ -175,7 +175,7 @@ export default function HeroSection() {
 								transition={{ duration: 0.8, delay: 1.8 }}
 							>
 								<motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
-									<Link href="https://projectcentral.nirajjha.xyz" target="_blank">
+									<Link href="/signin">
 										<Button className="group relative w-full sm:w-64 bg-gradient-to-r from-neutral-900 to-slate-900 hover:from-neutral-800 hover:to-slate-800 dark:from-white dark:to-slate-100 dark:hover:from-slate-100 dark:hover:to-white text-white dark:text-black shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl px-8 py-4 text-lg font-semibold overflow-hidden border border-neutral-200 dark:border-neutral-700">
 											<span className="relative z-10 flex items-center justify-center">
 												Our Latest Product

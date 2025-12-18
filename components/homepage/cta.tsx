@@ -58,7 +58,7 @@ export default function CTAPage() {
                             <motion.button
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="flex items-center cursor-pointer justify-center bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-black px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
+                                className="flex items-center justify-center bg-neutral-900 hover:bg-neutral-800 dark:bg-white dark:hover:bg-neutral-100 text-white dark:text-black px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
                             >
                                 Get Started Today
                                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -68,7 +68,7 @@ export default function CTAPage() {
                             <motion.button
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="flex items-center cursor-pointer justify-center border-2 border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-900 px-8 py-4 rounded-xl text-lg font-semibold bg-transparent transition-all duration-300 w-full sm:w-auto"
+                                className="flex items-center justify-center border-2 border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 hover:border-neutral-400 dark:hover:border-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-900 px-8 py-4 rounded-xl text-lg font-semibold bg-transparent transition-all duration-300 w-full sm:w-auto"
                             >
                                 <Calendar className="mr-2 h-5 w-5" />
                                 Free Consultation

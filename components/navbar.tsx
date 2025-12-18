@@ -2,227 +2,163 @@
 
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
-import { Equal, Moon, Sun, LogOut, Mail, FolderOpen } from 'lucide-react'
+import {
+    ArrowUpRight, Menu, Mail, Briefcase
+} from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/liquidbutton'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from '@/components/ui/sheet'
+import {
+    Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose
+} from '@/components/ui/sheet'
 import Image from 'next/image'
-import { useTheme } from 'next-themes'
+import { ThemeToggle } from './ui/themetoggle'
 
 const menuItems = [
-    { name: 'Services', href: '#services' },
-    { name: 'How it Works', href: '#approach' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'About', href: '#about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Pricing', href: '/pricing' },
+    { name: 'About', href: '/aboutus' },
 ]
 
 export const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-    const { theme, setTheme } = useTheme();
     const router = useRouter();
     const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50)
+            setIsScrolled(window.scrollY > 20)
         }
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    const handleLinkClick = (href: string, e?: React.MouseEvent) => {
-        if (href.startsWith('#')) {
-            e?.preventDefault();
-
-            // If we're not on the homepage, navigate to homepage first
-            if (pathname !== '/') {
-                router.push(`/${href}`);
-                return;
-            }
-
-            // If we're on homepage, scroll to the section
-            const element = document.querySelector(href);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
+    const handleNavigation = (href: string, e?: React.MouseEvent) => {
+        if (!href.includes('#')) {
+            router.push(href);
+            return;
         }
-    };
 
-    const renderAuthButtons = () => {
-        return (
-            <div className="hidden lg:flex items-center gap-4">
-                <Button
-                    asChild
-                    variant="outline"
-                    size="sm"
-                    className={cn(
-                        'rounded-xl border-2 hover:scale-105 transition-all duration-300',
-                        isScrolled ? 'w-10 h-10 p-0' : ''
-                    )}
-                >
-                    <Link href="/contact">
-                        {isScrolled ? (
-                            <Mail className="h-4 w-4" />
-                        ) : (
-                            <span>Contact</span>
-                        )}
-                    </Link>
-                </Button>
-                <Button
-                    asChild
-                    size="sm"
-                    className={cn(
-                        'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300',
-                        isScrolled ? 'w-10 h-10 p-0' : ''
-                    )}
-                >
-                    <Link href="/projects">
-                        {isScrolled ? (
-                            <FolderOpen className="h-4 w-4" />
-                        ) : (
-                            <span>Projects</span>
-                        )}
-                    </Link>
-                </Button>
-            </div>
-        );
+        e?.preventDefault();
+        const [path, hash] = href.split('#');
+        const targetId = `#${hash}`;
+
+        if (pathname === '/' || pathname === path) {
+            const element = document.querySelector(targetId);
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            router.push(`/${targetId}`);
+        }
     };
 
     return (
         <header>
-            <nav className="fixed left-0 w-full z-20 px-2">
-                <div className={cn('mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12', isScrolled && 'bg-background/50 max-w-4xl rounded-2xl border backdrop-blur-lg lg:px-5')}>
-                    <div className="relative flex flex-wrap items-center justify-between gap-6 lg:gap-0 py-2">
-                        <div className="flex w-full justify-between lg:w-auto">
-                            <Link
-                                href="/"
-                                aria-label="home"
-                                className="flex gap-2 items-center"
-                            >
+            <nav className="fixed top-0 left-0 w-full z-50 px-4 pt-4">
+                <div className={cn(
+                    'mx-auto max-w-7xl transition-all duration-300 rounded-2xl border',
+                    isScrolled
+                        ? 'bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md border-neutral-200 dark:border-neutral-800 shadow-sm py-3 px-6'
+                        : 'bg-transparent border-transparent py-4 px-4'
+                )}>
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3 cursor-pointer group" onClick={() => router.push('/')}>
+                            <div className="relative">
                                 <Image
                                     src="/shunyatech.png"
-                                    alt="ProjectCentral"
+                                    alt="Shunya"
                                     width={32}
                                     height={32}
-                                    className='w-10 h-10 rounded-full scale-110 bg-black'
+                                    className="rounded-full bg-neutral-900 border border-neutral-200 dark:border-neutral-700"
                                 />
-                                <p className='font-semibold text-xl tracking-tighter text-black dark:text-white'>Shunya Tech</p>
-                            </Link>
-                            <Sheet>
-                                <SheetTrigger asChild>
-                                    <Button
-                                        variant="ghost"
-                                        size="sm"
-                                        className="lg:hidden p-2"
-                                    >
-                                        <Equal className="size-6" />
-                                        <span className="sr-only">Open menu</span>
-                                    </Button>
-                                </SheetTrigger>
-                                <SheetContent side="top" className="w-full h-[50vh]">
-                                    <SheetHeader>
-                                        <SheetTitle className="text-left">Menu</SheetTitle>
-                                    </SheetHeader>
-                                    <div className="flex flex-col space-y-6 pl-8">
-                                        {
-                                            menuItems.map((item, index) => (
-                                                <SheetClose asChild key={index}>
-                                                    <button
-                                                        onClick={(e) => handleLinkClick(item.href, e)}
-                                                        className="text-lg font-medium text-muted-foreground hover:text-accent-foreground transition-colors text-left"
-                                                    >
-                                                        {item.name}
-                                                    </button>
-                                                </SheetClose>
-                                            ))
-                                        }
-                                        <div className="flex items-center gap-2 pt-4 border-t">
-                                            <span className="text-sm text-muted-foreground">Theme:</span>
-                                            <div className="flex items-center bg-gradient-to-r from-slate-100/80 to-slate-200/80 dark:from-slate-800/80 dark:to-slate-700/80 backdrop-blur-sm rounded-2xl p-1.5 border border-slate-300/30 dark:border-slate-600/30 shadow-lg">
-                                                <Button
-                                                    variant="ghost"
-                                                    size="sm"
-                                                    className={`h-8 w-8 p-0 rounded-xl transition-all cursor-pointer duration-300 hover:scale-110 ${theme === 'light' ? 'bg-gradient-to-br from-white to-amber-50 shadow-md border border-amber-200/50' : 'hover:bg-slate-600/50'}`}
-                                                    onClick={() => setTheme('light')}
-                                                >
-                                                    <Sun className="h-4 w-4 text-amber-500" />
-                                                </Button>
-                                                <Button
-                                                    variant="ghost"
-                                                    size="sm"
-                                                    className={`h-8 w-8 p-0 rounded-xl transition-all cursor-pointer duration-300 hover:scale-110 ${theme === 'dark' ? 'bg-gradient-to-br from-slate-700 to-slate-800 shadow-md border border-blue-400/30' : 'hover:bg-slate-100/50'}`}
-                                                    onClick={() => setTheme('dark')}
-                                                >
-                                                    <Moon className="h-4 w-4 text-blue-500" />
-                                                </Button>
-                                            </div>
-                                        </div>
-                                        <div className="w-full flex items-center gap-2 pt-4 border-t">
-                                            <SheetClose>
-                                                <Button
-                                                    asChild
-                                                    variant="outline"
-                                                    size="sm"
-                                                    className="rounded-xl border-2 hover:scale-105 transition-all duration-300 flex items-center gap-2">
-                                                    <Link href="/contact">
-                                                        <Mail className="h-4 w-4" />
-                                                        <span>Contact</span>
-                                                    </Link>
-                                                </Button>
-                                            </SheetClose>
-                                            <SheetClose>
-                                                <Button
-                                                    asChild
-                                                    size="sm"
-                                                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center gap-2">
-                                                    <Link href="/projects">
-                                                        <FolderOpen className="h-4 w-4" />
-                                                        <span>Projects</span>
-                                                    </Link>
-                                                </Button>
-                                            </SheetClose>
-                                        </div>
-                                    </div>
-                                </SheetContent>
-                            </Sheet>
+                                <span className="absolute -bottom-1 -right-1 flex h-3 w-3">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                                </span>
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="font-bold text-lg tracking-tight leading-none text-neutral-900 dark:text-white group-hover:tracking-normal transition-all">SHUNYA</span>
+                                <span className="text-[9px] font-mono text-neutral-500 dark:text-neutral-400 tracking-widest uppercase">Technologies</span>
+                            </div>
                         </div>
-                        <div className="absolute inset-0 m-auto hidden size-fit lg:block">
-                            <ul className="flex gap-8 text-sm">
+                        <div className="hidden lg:flex items-center bg-neutral-100/50 dark:bg-neutral-900/50 rounded-full px-6 py-2 border border-neutral-200/50 dark:border-neutral-800/50 backdrop-blur-sm">
+                            <ul className="flex gap-8">
                                 {
                                     menuItems.map((item, index) => (
                                         <li key={index}>
                                             <button
-                                                onClick={(e) => handleLinkClick(item.href, e)}
-                                                className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer transition-colors">
-                                                <span>{item.name}</span>
+                                                onClick={(e) => handleNavigation(item.href, e)}
+                                                className="text-sm font-medium cursor-pointer text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors uppercase tracking-wide flex items-center gap-1"
+                                            >
+                                                <span className="text-[10px] font-mono text-neutral-300 dark:text-neutral-700">0{index + 1}</span>
+                                                {item.name}
                                             </button>
                                         </li>
                                     ))
                                 }
                             </ul>
                         </div>
-                        <div className="hidden lg:flex items-center gap-4">
-                            <div className="flex items-center bg-gradient-to-r from-slate-100/80 to-slate-200/80 dark:from-slate-800/80 dark:to-slate-700/80 backdrop-blur-sm rounded-2xl p-1.5 border border-slate-300/30 dark:border-slate-600/30 shadow-lg">
-                                <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    className={`h-8 w-8 p-0 rounded-xl transition-all cursor-pointer duration-300 hover:scale-110 ${theme === 'light' ? 'bg-gradient-to-br from-white to-amber-50 shadow-md border border-amber-200/50' : 'hover:bg-slate-600/50'}`}
-                                    onClick={() => setTheme('light')}
-                                >
-                                    <Sun className="h-4 w-4 text-amber-500" />
-                                </Button>
-                                <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    className={`h-8 w-8 p-0 rounded-xl transition-all cursor-pointer duration-300 hover:scale-110 ${theme === 'dark' ? 'bg-gradient-to-br from-slate-700 to-slate-800 shadow-md border border-blue-400/30' : 'hover:bg-slate-100/50'}`}
-                                    onClick={() => setTheme('dark')}
-                                >
-                                    <Moon className="h-4 w-4 text-blue-500" />
-                                </Button>
-                            </div>
-                            {renderAuthButtons()}
+                        <div className="hidden lg:flex items-center gap-3">
+                            <ThemeToggle />
+                            <div className="h-8 w-[1px] bg-neutral-200 dark:bg-neutral-800 mx-1" />
+                            <Link href="/contact">
+                                <button className="cursor-pointer flex items-center gap-2 px-5 py-2.5 rounded-full border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-all text-sm font-medium">
+                                    <Mail className="w-4 h-4" />
+                                    <span>Contact</span>
+                                </button>
+                            </Link>
+                            <Link href="/projects">
+                                <button className="cursor-pointer group flex items-center gap-2 bg-neutral-900 dark:bg-white text-white dark:text-black px-5 py-2.5 rounded-full border border-neutral-900 dark:border-white text-sm font-semibold hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all shadow-sm">
+                                    <Briefcase className="w-4 h-4" />
+                                    <span>Work</span>
+                                    <ArrowUpRight className="w-3 h-3 opacity-50 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                </button>
+                            </Link>
                         </div>
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <button className="lg:hidden p-2 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 rounded-md">
+                                    <Menu className="w-5 h-5" />
+                                </button>
+                            </SheetTrigger>
+                            <SheetContent side="top" className="w-full bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
+                                <SheetHeader>
+                                    <SheetTitle className="text-left font-mono text-xs text-neutral-400 uppercase tracking-widest border-b border-neutral-100 dark:border-neutral-800 pb-4">
+                                        System Navigation
+                                    </SheetTitle>
+                                </SheetHeader>
+                                <div className="flex flex-col space-y-2 mt-6">
+                                    {
+                                        menuItems.map((item, index) => (
+                                            <SheetClose asChild key={index}>
+                                                <button
+                                                    onClick={(e) => handleNavigation(item.href, e)}
+                                                    className="flex items-center gap-4 text-3xl font-light text-neutral-900 dark:text-white hover:pl-4 transition-all duration-300 text-left py-2"
+                                                >
+                                                    <span className="font-mono text-sm text-neutral-400 mt-2">0{index + 1}</span>
+                                                    {item.name}
+                                                </button>
+                                            </SheetClose>
+                                        ))
+                                    }
+                                    <div className="pt-8 mt-4 border-t border-neutral-200 dark:border-neutral-800 grid grid-cols-2 gap-4">
+                                        <SheetClose asChild>
+                                            <Link href="/contact" className="w-full">
+                                                <button className="w-full flex items-center justify-center gap-2 py-4 rounded-xl border border-neutral-200 dark:border-neutral-800 font-medium hover:bg-neutral-50 dark:hover:bg-neutral-900">
+                                                    <Mail className="w-4 h-4" /> Contact
+                                                </button>
+                                            </Link>
+                                        </SheetClose>
+                                        <SheetClose asChild>
+                                            <Link href="/projects" className="w-full">
+                                                <button className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-neutral-900 dark:bg-white text-white dark:text-black font-medium">
+                                                    <Briefcase className="w-4 h-4" /> Work
+                                                </button>
+                                            </Link>
+                                        </SheetClose>
+                                    </div>
+                                    <ThemeToggle />
+                                </div>
+                            </SheetContent>
+                        </Sheet>
                     </div>
                 </div>
             </nav>
